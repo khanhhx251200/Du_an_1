@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+
+    tools:context=".ThemHangGiayActivity">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/hanggiay"
+        />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:id="@+id/tilmhg"
+        >
+
+        <EditText
+            android:id="@+id/edMaHangGiay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mã Hãng Giày" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tilthg"
+        >
+
+        <EditText
+            android:id="@+id/edTenHangGiay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tên Hãng Giày" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tilmota"
+        >
+
+        <EditText
+            android:id="@+id/edMoTa"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mô tả" />
+    </com.google.android.material.textfield.TextInputLayout>
+    <com.google.android.material.textfield.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/tilvitri"
+        >
+
+        <EditText
+            android:inputType="number"
+            android:id="@+id/edViTri"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Vị trí"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btnThemHangGiay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Thêm"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_background"
+            android:onClick="ThemHangGiay"/>
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Hủy"
+            android:textColor="#FFFFFF"
+            android:background="@drawable/button_background"
+            android:onClick="HuyHangGiay"
+            />
+    </LinearLayout>
+
+    <Button
+        android:layout_marginTop="8dp"
+        android:id="@+id/button3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Danh sách Hãng Giày"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/button_background"
+        android:onClick="HuyHangGiay"
+        />
+
+</LinearLayout>
