@@ -1,5 +1,7 @@
 package com.example.du_an_1.model;
 
+import androidx.annotation.NonNull;
+
 import java.io.Serializable;
 
 public class HangGiay implements Serializable {
@@ -49,5 +51,11 @@ public class HangGiay implements Serializable {
 
     public void setViTri(int viTri) {
         this.viTri = viTri;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return maHangGiay + " | " + tenHangGiay;
     }
 }
