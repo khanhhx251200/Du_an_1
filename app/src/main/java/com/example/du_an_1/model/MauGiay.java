@@ -17,6 +17,10 @@ public class MauGiay {
         this.giaBan = giaBan;
     }
 
+    public MauGiay() {
+
+    }
+
     public String getMaMauGiay() {
         return maMauGiay;
     }

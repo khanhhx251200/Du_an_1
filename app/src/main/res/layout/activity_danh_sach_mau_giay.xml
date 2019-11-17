@@ -7,6 +7,11 @@
     android:orientation="vertical"
     tools:context=".DanhSachMauGiayActivity">
 
+    <EditText
+        android:id="@+id/edTimMauGiay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Tìm theo tên mẫu giày" />
     <ListView
         android:id="@+id/lvDanhSachMauGiay"
         android:layout_width="match_parent"
