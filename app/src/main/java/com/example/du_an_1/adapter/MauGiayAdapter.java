@@ -46,12 +46,10 @@ public class MauGiayAdapter extends BaseAdapter {
         if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.custom_listview_maugiay, parent, false);
             mauGiayHolder = new MauGiayHolder();
-            mauGiayHolder.tvMaMG = view.findViewById(R.id.tvMaMauGiay);
-            mauGiayHolder.tvMaHG = view.findViewById(R.id.tvMaHangGiayspn);
+            mauGiayHolder.tvMaMG = view.findViewById(R.id.tvMaMaugiay);
             mauGiayHolder.tvTenMG = view.findViewById(R.id.tvTenMauGiay);
             mauGiayHolder.tvSoLuong = view.findViewById(R.id.tvSoLuongMG);
-            mauGiayHolder.tvGiaBan = view.findViewById(R.id.tvGiaBan);
-            mauGiayHolder.tvMauSac = view.findViewById(R.id.tvMauSac);
+            mauGiayHolder.tvGiaBan = view.findViewById(R.id.tvGiaban);
             mauGiayHolder.imgDeleteMG = view.findViewById(R.id.imgDeleteMauGiay);
             mauGiayHolder.imgDeleteMG.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -66,16 +64,14 @@ public class MauGiayAdapter extends BaseAdapter {
             mauGiayHolder = (MauGiayHolder) view.getTag();
         }
         mauGiayHolder.tvMaMG.setText(mauGiayList.get(i).getMaMauGiay());
-        mauGiayHolder.tvMaHG.setText(mauGiayList.get(i).getMaHangGiay());
         mauGiayHolder.tvTenMG.setText(mauGiayList.get(i).getTenMauGiay());
-        mauGiayHolder.tvSoLuong.setText(String.valueOf(mauGiayList.get(i).getSoLuong()));
-        mauGiayHolder.tvMauSac.setText(mauGiayList.get(i).getMauSac());
-        mauGiayHolder.tvGiaBan.setText(String.valueOf(mauGiayList.get(i).getGiaBan()));
+        mauGiayHolder.tvSoLuong.setText(String.valueOf(mauGiayList.get(i).getSoLuong()) + " Đôi");
+        mauGiayHolder.tvGiaBan.setText(String.valueOf(mauGiayList.get(i).getGiaBan()) + "00 VNĐ");
         return view;
     }
 
     public class MauGiayHolder {
-        TextView tvMaMG, tvMaHG, tvTenMG, tvSoLuong, tvMauSac, tvGiaBan;
+        TextView tvMaMG, tvTenMG, tvSoLuong, tvMauSac, tvGiaBan;
         ImageView imgDeleteMG;
     }
 }

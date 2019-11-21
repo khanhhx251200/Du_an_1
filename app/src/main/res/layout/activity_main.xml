@@ -35,7 +35,7 @@
                 android:text="Quản lý hãng giày"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:textColor="#FFF000"/>
+                android:textColor="#FFFFFF" />
         </LinearLayout>
 
         <LinearLayout
@@ -57,7 +57,7 @@
                 android:text="Quản lý mẫu giày"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                android:textColor="#FFF000"/>
+                android:textColor="#FFFFFF" />
         </LinearLayout>
     </LinearLayout>
     <LinearLayout
@@ -85,7 +85,7 @@
                 android:gravity="center"
                 android:text="Hóa đơn"
                 android:textSize="18dp"
-                android:textColor="#FFF000"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -108,7 +108,7 @@
                 android:gravity="center"
                 android:text="Doanh Số"
                 android:textSize="18dp"
-                android:textColor="#FFF000"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>
@@ -128,7 +128,7 @@
             <ImageView
                 android:layout_width="80dp"
                 android:layout_height="80dp"
-                android:src="@drawable/bestseller"
+                android:src="@drawable/bestt"
                 />
 
             <TextView
@@ -137,7 +137,7 @@
                 android:gravity="center"
                 android:text="Giày bán chạy"
                 android:textSize="18dp"
-                android:textColor="#FFF000"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold" />
         </LinearLayout>
 
@@ -159,7 +159,7 @@
                 android:gravity="center"
                 android:text="Thoát"
                 android:textSize="18dp"
-                android:textColor="#FFF000"
+                android:textColor="#FFFFFF"
                 android:textStyle="bold" />
         </LinearLayout>
     </LinearLayout>

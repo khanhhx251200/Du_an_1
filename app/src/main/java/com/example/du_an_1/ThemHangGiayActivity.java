@@ -47,6 +47,7 @@ public class ThemHangGiayActivity extends AppCompatActivity {
         hangGiayDAO = new HangGiayDAO(this);
         hangGiayList = new ArrayList<>();
         hangGiayList = hangGiayDAO.getAllHangGiay();
+        edMaHangGiay.setText("HG");
     }
 
 

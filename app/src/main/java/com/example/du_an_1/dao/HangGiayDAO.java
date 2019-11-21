@@ -14,7 +14,7 @@ import java.util.List;
 public class HangGiayDAO {
 
     public static final String TABLE_NAME = "HangGiay";
-    public static final String SQL_HANG_GIAY = "CREATE TABLE HangGiay(mahanggiay text primary key, tenhanggiay text, mota text, vitri number)";
+    public static final String SQL_HANG_GIAY = "CREATE TABLE HangGiay(mahanggiay text primary key AUTOINCREMENT, tenhanggiay text, mota text, vitri number)";
 
     private SQLiteDatabase db;
     private DatabaseHealper dbHealper;
