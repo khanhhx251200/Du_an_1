@@ -5,23 +5,30 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.du_an_1.R;
 import com.example.du_an_1.dao.MauGiayDAO;
+import com.example.du_an_1.model.HangGiay;
 import com.example.du_an_1.model.MauGiay;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MauGiayAdapter extends BaseAdapter {
     Context context;
     List<MauGiay> mauGiayList;
+    List<HangGiay> hangGiayList;
     MauGiayDAO mauGiayDAO;
+    MauGiay mauGiay;
 
-    public MauGiayAdapter(Context context, List<MauGiay> mauGiayList) {
+    public MauGiayAdapter(Context context, List<MauGiay> mauGiayList, List<HangGiay> hangGiayList) {
         this.context = context;
         this.mauGiayList = mauGiayList;
+        this.hangGiayList = hangGiayList;
         mauGiayDAO = new MauGiayDAO(context);
     }
 
@@ -39,6 +46,7 @@ public class MauGiayAdapter extends BaseAdapter {
     public long getItemId(int position) {
         return 0;
     }
+
 
     @Override
     public View getView(final int i, View view, ViewGroup parent) {
@@ -69,6 +77,23 @@ public class MauGiayAdapter extends BaseAdapter {
         mauGiayHolder.tvGiaBan.setText(String.valueOf(mauGiayList.get(i).getGiaBan()) + "00 VNĐ");
         return view;
     }
+
+//    @Override
+//    public Filter getFilter() {
+//        Filter filter = new Filter() {
+//            @Override
+//            protected FilterResults performFiltering(CharSequence constraint) {
+//return ;
+//            };
+//
+//            @Override
+//            protected void publishResults(CharSequence constraint, FilterResults results) {
+//
+//            }
+//        };
+//        return null;
+//    }
+
 
     public class MauGiayHolder {
         TextView tvMaMG, tvTenMG, tvSoLuong, tvMauSac, tvGiaBan;

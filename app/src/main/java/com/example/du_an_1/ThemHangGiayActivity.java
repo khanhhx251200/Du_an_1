@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -47,7 +48,9 @@ public class ThemHangGiayActivity extends AppCompatActivity {
         hangGiayDAO = new HangGiayDAO(this);
         hangGiayList = new ArrayList<>();
         hangGiayList = hangGiayDAO.getAllHangGiay();
-        edMaHangGiay.setText("HG");
+
+        edMaHangGiay.setText("HG0");
+
     }
 
 
@@ -81,6 +84,7 @@ public class ThemHangGiayActivity extends AppCompatActivity {
         boolean isValid = true;
 
         if (edMaHangGiay.getText().toString().isEmpty()) {
+
             tilMaHangGiay.setError("Vui lòng nhập Mã hãng giày");
             isValid = false;
         } else {
@@ -109,7 +113,7 @@ public class ThemHangGiayActivity extends AppCompatActivity {
             tilViTri.setErrorEnabled(false);
         }
         if (isValid) {
-            Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show();
+//            Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -4,6 +4,7 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.du_an_1.database.DatabaseHealper;
 import com.example.du_an_1.model.HangGiay;
@@ -35,15 +36,16 @@ public class HangGiayDAO {
         if (result == -1) return false;
         return true;
     }
-    public int updateHangGiay(String mahanggiay, String tenhanggiay,String mota, int vitri){
+
+    public int updateHangGiay(String mahanggiay, String tenhanggiay, String mota, int vitri) {
         ContentValues values = new ContentValues();
-        values.put("mahanggiay",mahanggiay);
-        values.put("tenhanggiay",tenhanggiay);
+        values.put("mahanggiay", mahanggiay);
+        values.put("tenhanggiay", tenhanggiay);
         values.put("mota", mota);
         values.put("vitri", vitri);
 
-        int result = db.update(TABLE_NAME,values,"mahanggiay=?",new String[]{mahanggiay});
-        if (result == 0){
+        int result = db.update(TABLE_NAME, values, "mahanggiay=?", new String[]{mahanggiay});
+        if (result == 0) {
             return -1;
         }
         return 1;
@@ -73,4 +75,6 @@ public class HangGiayDAO {
         }
         return hangGiayList;
     }
+
+
 }

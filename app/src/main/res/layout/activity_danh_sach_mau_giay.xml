@@ -7,11 +7,21 @@
     android:orientation="vertical"
     tools:context=".DanhSachMauGiayActivity">
 
-    <EditText
-        android:id="@+id/edTimMauGiay"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Tìm theo tên mẫu giày" />
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="50dp"
+            android:src="@drawable/ic_search_black_24dp"></ImageView>
+
+        <EditText
+            android:id="@+id/edTimMauGiay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Tìm kiếm giày theo tên ..." />
+    </LinearLayout>
     <ListView
         android:id="@+id/lvDanhSachMauGiay"
         android:layout_width="match_parent"

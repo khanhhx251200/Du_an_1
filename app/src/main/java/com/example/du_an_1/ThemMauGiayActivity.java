@@ -2,6 +2,7 @@ package com.example.du_an_1;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -86,6 +87,8 @@ public class ThemMauGiayActivity extends AppCompatActivity {
         boolean result = mauGiayDAO.insertMauGiay(mauGiay);
         if (result) {
             Toast.makeText(this, "Thành công", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(this, DanhSachMauGiayActivity.class);
+            startActivity(intent);
         } else {
             Toast.makeText(this, "Thất bại", Toast.LENGTH_SHORT).show();
         }

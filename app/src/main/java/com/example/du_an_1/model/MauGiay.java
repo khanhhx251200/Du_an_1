@@ -1,6 +1,10 @@
 package com.example.du_an_1.model;
 
-public class MauGiay {
+import androidx.annotation.NonNull;
+
+import java.io.Serializable;
+
+public class MauGiay implements Serializable {
     private String maMauGiay;
     private String maHangGiay;
     private String tenMauGiay;
@@ -67,5 +71,11 @@ public class MauGiay {
 
     public void setGiaBan(double giaBan) {
         this.giaBan = giaBan;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return tenMauGiay;
     }
 }

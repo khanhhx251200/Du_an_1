@@ -4,5 +4,6 @@
     <item
         android:id="@+id/item_add_mau_giay"
         android:icon="@drawable/ic_add_black_24dp"
-        android:title="Thêm mẫu giày" />
+        android:title="Thêm mẫu giày"
+        app:showAsAction="always" />
 </menu>

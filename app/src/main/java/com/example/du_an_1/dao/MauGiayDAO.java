@@ -37,19 +37,20 @@ public class MauGiayDAO {
         return true;
     }
 
-    public int updateMauGiay(MauGiay mauGiay) {
+    public int updateMauGiay(String mamaugiay, String mahanggiay, String tenmaugiay, int soluong, String mausac, double giaban) {
         ContentValues values = new ContentValues();
-        values.put("mamaugiay", mauGiay.getMaMauGiay());
-        values.put("mahanggiay", mauGiay.getMaHangGiay());
-        values.put("tenmaugiay", mauGiay.getTenMauGiay());
-        values.put("soluong", mauGiay.getSoLuong());
-        values.put("mausac", mauGiay.getMauSac());
-        values.put("giaban", mauGiay.getGiaBan());
+        values.put("mamaugiay", mamaugiay);
+        values.put("mahanggiay", mahanggiay);
+        values.put("tenmaugiay", tenmaugiay);
+        values.put("soluong", soluong);
+        values.put("mausac", mausac);
+        values.put("giaban", giaban);
 
-        long result = db.update(TABLE_NAME, values, "mamaugiay=?", new String[]{mauGiay.getMaHangGiay()});
+        long result = db.update(TABLE_NAME, values, "mamaugiay=?", new String[]{mamaugiay});
         if (result == 0) return -1;
         return 1;
     }
+
 
     public int deleteMauGiay(String mamaugiay) {
         return db.delete(TABLE_NAME, "mamaugiay=?", new String[]{mamaugiay});
@@ -72,4 +73,6 @@ public class MauGiayDAO {
         }
         return mauGiayList;
     }
+
+
 }
