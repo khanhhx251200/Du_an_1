@@ -77,24 +77,6 @@ public class MauGiayAdapter extends BaseAdapter {
         mauGiayHolder.tvGiaBan.setText(String.valueOf(mauGiayList.get(i).getGiaBan()) + "00 VNĐ");
         return view;
     }
-
-//    @Override
-//    public Filter getFilter() {
-//        Filter filter = new Filter() {
-//            @Override
-//            protected FilterResults performFiltering(CharSequence constraint) {
-//return ;
-//            };
-//
-//            @Override
-//            protected void publishResults(CharSequence constraint, FilterResults results) {
-//
-//            }
-//        };
-//        return null;
-//    }
-
-
     public class MauGiayHolder {
         TextView tvMaMG, tvTenMG, tvSoLuong, tvMauSac, tvGiaBan;
         ImageView imgDeleteMG;

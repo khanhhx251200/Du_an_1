@@ -74,5 +74,23 @@ public class MauGiayDAO {
         return mauGiayList;
     }
 
-
+    public List<MauGiay> getMayGiayByName(String tenMauGiayCanTim) {
+        List<MauGiay> mauGiayList = new ArrayList<>();
+        String sqlSelect = "select mamaugiay, mahanggiay,tenmaugiay, soluong, mausac, giaban from MauGiay where tenmaugiay like ?";
+        String[] paramaters = {tenMauGiayCanTim};
+        Cursor cursor = db.rawQuery(sqlSelect, paramaters);
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            MauGiay mauGiay = new MauGiay();
+            mauGiay.setMaMauGiay(cursor.getString(cursor.getColumnIndex("mamaugiay")));
+            mauGiay.setMaHangGiay(cursor.getString(cursor.getColumnIndex("mahanggiay")));
+            mauGiay.setTenMauGiay(cursor.getString(cursor.getColumnIndex("tenmaugiay")));
+            mauGiay.setSoLuong(cursor.getInt(cursor.getColumnIndex("soluong")));
+            mauGiay.setMauSac(cursor.getString(cursor.getColumnIndex("mausac")));
+            mauGiay.setGiaBan(cursor.getDouble(cursor.getColumnIndex("giaban")));
+            mauGiayList.add(mauGiay);
+            cursor.moveToNext();
+        }
+        return mauGiayList;
+    }
 }

@@ -49,6 +49,7 @@ public class SuaMauGiayActivity extends AppCompatActivity {
         mauGiayDAO = new MauGiayDAO(this);
         hangGiayDAO = new HangGiayDAO(this);
 
+
         intent = getIntent();
         Bundle bundle = intent.getBundleExtra("bundle");
         MauGiay mauGiay = (MauGiay) bundle.getSerializable("MauGiay");
@@ -59,6 +60,7 @@ public class SuaMauGiayActivity extends AppCompatActivity {
         edMauSac = findViewById(R.id.edSuaMauSac);
         edGiaBan = findViewById(R.id.edSuaGiaBan);
         spnMaHG = findViewById(R.id.spnSuaMaHangGiay);
+        getMaHangGiay();
 
         mamaugiay = mauGiay.getMaMauGiay();
         tenmaugiay = mauGiay.getTenMauGiay();
@@ -76,6 +78,7 @@ public class SuaMauGiayActivity extends AppCompatActivity {
         hangGiayList = new ArrayList<>();
         hangGiayList = hangGiayDAO.getAllHangGiay();
 
+
         int index = -1;
         for (int i = 0; i < hangGiayList.size(); i++) {
             if (mauGiay.getMaHangGiay().equalsIgnoreCase(hangGiayList.get(i).getMaHangGiay())) {
@@ -89,7 +92,7 @@ public class SuaMauGiayActivity extends AppCompatActivity {
         spnMaHG.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
-                mahanggiay = mauGiayList.get(spnMaHG.getSelectedItemPosition()).getMaHangGiay();
+                mahanggiay = hangGiayList.get(spnMaHG.getSelectedItemPosition()).getMaHangGiay();
             }
 
             @Override
@@ -111,5 +114,14 @@ public class SuaMauGiayActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Sửa thất bại!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void getMaHangGiay() {
+        hangGiayDAO = new HangGiayDAO(this);
+        hangGiayList = hangGiayDAO.getAllHangGiay();
+        ArrayAdapter<HangGiay> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, hangGiayList);
+        arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnMaHG.setAdapter(arrayAdapter);
+
     }
 }

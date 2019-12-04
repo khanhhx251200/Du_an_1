@@ -14,6 +14,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.du_an_1.adapter.MauGiayAdapter;
 import com.example.du_an_1.dao.MauGiayDAO;
@@ -24,12 +25,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DanhSachMauGiayActivity extends AppCompatActivity {
-    ListView lvMG;
-    EditText edSearch;
-    List<MauGiay> mauGiayList;
-    List<HangGiay> hangGiayList;
-    MauGiayDAO mauGiayDAO;
-    MauGiayAdapter mauGiayAdapter;
+    private ListView lvMG;
+    private EditText edSearch;
+    private List<MauGiay> mauGiayList;
+    private List<HangGiay> hangGiayList;
+    private MauGiayDAO mauGiayDAO;
+    private MauGiayAdapter mauGiayAdapter;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -53,20 +55,29 @@ public class DanhSachMauGiayActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         edSearch.addTextChangedListener(new TextWatcher() {
+            String keySearch;
+            List<MauGiay> dsGiayTim = new ArrayList<>();
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
+                //keySearch = edSearch.getText().toString();
+                //dsGiayTim = mauGiayDAO.getMayGiayByName(keySearch);
+                //Toast.makeText(getApplication(), "beforeTextChanged" + dsGiayTim.size(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+                keySearch = edSearch.getText().toString();
+                dsGiayTim = mauGiayDAO.getMayGiayByName(keySearch);
+                Toast.makeText(getApplication(), "onTextChanged" + dsGiayTim.size(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-
+                keySearch = edSearch.getText().toString();
+                dsGiayTim = mauGiayDAO.getMayGiayByName(keySearch);
+                Toast.makeText(getApplication(), "afterTextChanged" + dsGiayTim.size(), Toast.LENGTH_SHORT).show();
             }
         });
 
