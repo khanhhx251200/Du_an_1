@@ -103,6 +103,9 @@ public class DanhSachMauGiayActivity extends AppCompatActivity {
             case R.id.item_add_mau_giay:
                 startActivity(new Intent(this, ThemMauGiayActivity.class));
                 break;
+            case android.R.id.home:
+                onBackPressed();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }

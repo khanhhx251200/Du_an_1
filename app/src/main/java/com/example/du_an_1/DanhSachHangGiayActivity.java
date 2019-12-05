@@ -1,9 +1,11 @@
 package com.example.du_an_1;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -31,7 +33,7 @@ public class DanhSachHangGiayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_danh_sach_hang_giay);
         setTitle("Danh sách hãng giày");
-
+        iconBack();
         lvDanhSachHangGiay = findViewById(R.id.lvDanhSachHangGiay);
 
         hangGiayDAO = new HangGiayDAO(this);
@@ -64,7 +66,19 @@ public class DanhSachHangGiayActivity extends AppCompatActivity {
             case R.id.item_add_hang_giay:
                 startActivity(new Intent(DanhSachHangGiayActivity.this, ThemHangGiayActivity.class));
                 break;
+            case android.R.id.home:
+                onBackPressed();
+                break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+
+    private void iconBack() {
+        ActionBar actionBar = getSupportActionBar();
+        Drawable drawable = getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(drawable);
+
     }
 }

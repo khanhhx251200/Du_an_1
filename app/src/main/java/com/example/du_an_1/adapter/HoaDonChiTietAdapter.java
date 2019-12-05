@@ -53,12 +53,12 @@ public class HoaDonChiTietAdapter extends BaseAdapter {
         } else {
             hoaDonHolder = (HoaDonHolder) view.getTag();
         }
-        hoaDonHolder.tvTenMauGiay.setText("Tên mẫu giày: " + hoaDonChiTietList.get(i).getMauGiay().getMaMauGiay());
+        hoaDonHolder.tvTenMauGiay.setText("Tên mẫu giày: " + hoaDonChiTietList.get(i).getMauGiay().getTenMauGiay());
         hoaDonHolder.tvGiaBan.setText("Giá bán: " + hoaDonChiTietList.get(i).getMauGiay().getGiaBan() + "");
-        hoaDonHolder.tvSoLuong.setText("Số lượng mua " + hoaDonChiTietList.get(i).getSoLuongMua() + "");
+        hoaDonHolder.tvSoLuong.setText("Số lượng mua: " + hoaDonChiTietList.get(i).getSoLuongMua() + "");
         int soLuong = hoaDonChiTietList.get(i).getSoLuongMua();
         Double giatien = hoaDonChiTietList.get(i).getMauGiay().getGiaBan();
-        hoaDonHolder.tvThanhTien.setText("Giá " + soLuong * giatien + "");
+        hoaDonHolder.tvThanhTien.setText("Giá: " + soLuong * giatien + "");
         hoaDonHolder.imgXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

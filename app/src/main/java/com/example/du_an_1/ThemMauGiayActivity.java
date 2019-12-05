@@ -1,9 +1,13 @@
 package com.example.du_an_1;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -37,7 +41,7 @@ public class ThemMauGiayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_them_mau_giay);
         setTitle("Thêm mẫu giày");
-
+        iconBack();
         tilMMG = findViewById(R.id.tilmmg);
         tilTMG = findViewById(R.id.tiltmg);
         tilSL = findViewById(R.id.tilslmg);
@@ -76,7 +80,7 @@ public class ThemMauGiayActivity extends AppCompatActivity {
 
     public void themMauGiay(View view) {
         mauGiayDAO = new MauGiayDAO(this);
-
+        validate();
         String maMG = edMaMG.getText().toString();
         String tenMG = edTenMG.getText().toString();
         String mausac = edMauSac.getText().toString();
@@ -92,5 +96,62 @@ public class ThemMauGiayActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Thất bại", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    public void validate() {
+
+        boolean isValid = true;
+
+        if (edMaMG.getText().toString().isEmpty()) {
+
+            tilMMG.setError("Vui lòng nhập Mã mẫu giày");
+            isValid = false;
+        } else {
+            tilMMG.setErrorEnabled(false);
+
+        }
+        if (edTenMG.getText().toString().isEmpty()) {
+            tilTMG.setError("Vui lòng nhập Tên hãng giày");
+            isValid = false;
+        } else {
+            tilTMG.setErrorEnabled(false);
+
+        }
+        if (edSoLuongMG.getText().toString().isEmpty()) {
+            tilSL.setError("Vui lòng nhập Mô tả");
+            isValid = false;
+        } else {
+            tilSL.setErrorEnabled(false);
+        }
+        if (edMauSac.getText().toString().isEmpty()) {
+            tilMS.setError("Vui lòng nhập Vị trí");
+            isValid = false;
+        } else {
+            tilMS.setErrorEnabled(false);
+        }
+        if (edGiaBan.getText().toString().isEmpty()) {
+            tilGB.setError("Vui lòng nhập Vị trí");
+            isValid = false;
+        } else {
+            tilGB.setErrorEnabled(false);
+        }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void iconBack() {
+        ActionBar actionBar = getSupportActionBar();
+        Drawable drawable = getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(drawable);
+
     }
 }

@@ -1,8 +1,12 @@
 package com.example.du_an_1;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -44,28 +48,8 @@ public class ThemHoaDonChiTietActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_them_hoa_don_chi_tiet);
         setTitle("Hóa Đơn Chi Tiết");
-
-        edMaHDCT = findViewById(R.id.edMaHDCT);
-        edNgayMua = findViewById(R.id.edNgayMua);
-        edSoLuong = findViewById(R.id.edSoluongMua);
-        spnTenMG = findViewById(R.id.spnTenMauGiay);
-        btnThemVaoGioHang = findViewById(R.id.btnThemGioHang);
-        btnXemHoaDon = findViewById(R.id.btnXemHoaDon);
-        lvHDCT = findViewById(R.id.lvHDCT);
-
-
-        hoaDonChiTietList = new ArrayList<>();
-        hoaDonList = new ArrayList<>();
-        mauGiayList = new ArrayList<>();
-
-        mauGiayDAO = new MauGiayDAO(this);
-        hoaDonDAO = new HoaDonDAO(this);
-
-        try {
-            hoaDonList = hoaDonDAO.getAllHoaDon();
-        } catch (ParseException e) {
-            Toast.makeText(this, "Khong the lay list hoa don", Toast.LENGTH_SHORT).show();
-        }
+        iconBack();
+        init();
         getTenMauGiay();
         hoaDonChiTietAdapter = new HoaDonChiTietAdapter(hoaDonChiTietList, this);
         lvHDCT.setAdapter(hoaDonChiTietAdapter);
@@ -125,6 +109,9 @@ public class ThemHoaDonChiTietActivity extends AppCompatActivity {
         HoaDon hoaDon = new HoaDon(maHoaDon, Calendar.getInstance().getTime());
         HoaDonChiTiet hoaDonChiTiet = new HoaDonChiTiet(hoaDon, mauGiay, Integer.parseInt(soLuong));
         hoaDonChiTietList.add(hoaDonChiTiet);
+        hoaDonChiTietAdapter = new HoaDonChiTietAdapter(hoaDonChiTietList, this);
+        lvHDCT.setAdapter(hoaDonChiTietAdapter);
+        hoaDonChiTietAdapter.notifyDataSetChanged();
     }
 
     public void getTenMauGiay() {
@@ -144,11 +131,53 @@ public class ThemHoaDonChiTietActivity extends AppCompatActivity {
         return index;
     }
 
+    private void init() {
+        edMaHDCT = findViewById(R.id.edMaHDCT);
+        edNgayMua = findViewById(R.id.edNgayMua);
+        edSoLuong = findViewById(R.id.edSoluongMua);
+        spnTenMG = findViewById(R.id.spnTenMauGiay);
+        btnThemVaoGioHang = findViewById(R.id.btnThemGioHang);
+        btnXemHoaDon = findViewById(R.id.btnXemHoaDon);
+        lvHDCT = findViewById(R.id.lvHDCT);
+
+
+        hoaDonChiTietList = new ArrayList<>();
+        hoaDonList = new ArrayList<>();
+
+
+        mauGiayDAO = new MauGiayDAO(this);
+        hoaDonDAO = new HoaDonDAO(this);
+
+        try {
+            hoaDonList = hoaDonDAO.getAllHoaDon();
+        } catch (ParseException e) {
+            Toast.makeText(this, "Khong the lay list hoa don", Toast.LENGTH_SHORT).show();
+        }
+    }
+
     @Override
     protected void onResume() {
         super.onResume();
         Date date = Calendar.getInstance().getTime();
         edNgayMua.setText(simpleDateFormat.format(date));
         edNgayMua.setEnabled(false);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void iconBack() {
+        ActionBar actionBar = getSupportActionBar();
+        Drawable drawable = getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(drawable);
+
     }
 }

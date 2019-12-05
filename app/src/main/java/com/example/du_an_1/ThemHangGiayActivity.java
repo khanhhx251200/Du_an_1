@@ -1,9 +1,11 @@
 package com.example.du_an_1;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
@@ -33,7 +35,7 @@ public class ThemHangGiayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_them_hang_giay);
         setTitle("Thêm hãng giày");
-
+        iconBack();
         edMaHangGiay = findViewById(R.id.edMaHangGiay);
         edTenHangGiay = findViewById(R.id.edTenHangGiay);
         edMoTa = findViewById(R.id.edMoTa);
@@ -112,8 +114,23 @@ public class ThemHangGiayActivity extends AppCompatActivity {
 
             tilViTri.setErrorEnabled(false);
         }
-        if (isValid) {
-//            Toast.makeText(this, "OK", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
         }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void iconBack() {
+        ActionBar actionBar = getSupportActionBar();
+        Drawable drawable = getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(drawable);
+
     }
 }

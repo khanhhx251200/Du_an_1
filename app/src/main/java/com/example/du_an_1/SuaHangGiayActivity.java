@@ -1,9 +1,13 @@
 package com.example.du_an_1;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -27,7 +31,7 @@ public class SuaHangGiayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sua_hang_giay);
         setTitle("Sửa Hãng Giày");
-
+        iconBack();
         edSuaMaHangGiay = findViewById(R.id.edSuaMaHangGiay);
         edSuaTenHangGiay = findViewById(R.id.edSuaTenHangGiay);
         edSuaMoTa = findViewById(R.id.edSuaMoTa);
@@ -69,5 +73,23 @@ public class SuaHangGiayActivity extends AppCompatActivity {
         } else {
             Toast.makeText(this, "Sửa thất bại!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void iconBack() {
+        ActionBar actionBar = getSupportActionBar();
+        Drawable drawable = getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(drawable);
+
     }
 }

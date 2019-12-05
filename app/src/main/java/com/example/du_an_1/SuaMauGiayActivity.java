@@ -1,10 +1,14 @@
 package com.example.du_an_1;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -39,7 +43,7 @@ public class SuaMauGiayActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sua_mau_giay);
-
+        iconBack();
         tilMMG = findViewById(R.id.tilSuammg);
         tilTMG = findViewById(R.id.tilSuatmg);
         tilSL = findViewById(R.id.tilSuaslmg);
@@ -122,6 +126,24 @@ public class SuaMauGiayActivity extends AppCompatActivity {
         ArrayAdapter<HangGiay> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, hangGiayList);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnMaHG.setAdapter(arrayAdapter);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                onBackPressed();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void iconBack() {
+        ActionBar actionBar = getSupportActionBar();
+        Drawable drawable = getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(drawable);
 
     }
 }
