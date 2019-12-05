@@ -75,7 +75,7 @@ public class ThemHoaDonChiTietActivity extends AppCompatActivity {
                         if (index >= 0) {
                             int tongSoLuongSach = hoaDonChiTietList.get(index).getSoLuongMua();
                             if ((hoaDonChiTietList.get(index).getSoLuongMua() + Integer.parseInt(edSoLuong.getText().toString())) > tongSoLuongSach) {
-                                Toast.makeText(ThemHoaDonChiTietActivity.this, "Số lượng sách tối đa bạn có thể mua là: " + (tongSoLuongSach - hoaDonChiTietList.get(index).getSoLuongMua() + ""), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(ThemHoaDonChiTietActivity.this, "Số lượng mẫu giày tối đa bạn có thể mua là: " + (tongSoLuongSach - hoaDonChiTietList.get(index).getSoLuongMua() + ""), Toast.LENGTH_SHORT).show();
                                 return;
                             } else {
                                 HoaDonChiTiet hoaDonChiTiet = hoaDonChiTietList.get(index);
@@ -103,7 +103,7 @@ public class ThemHoaDonChiTietActivity extends AppCompatActivity {
         edNgayMua.setEnabled(false);
         String soLuong = edSoLuong.getText().toString();
         if (Integer.parseInt(soLuong) > mauGiay.getSoLuong()) {
-            Toast.makeText(this, "Số lượng sách còn lại trong kho là :" + mauGiay.getSoLuong(), Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Số lượng mẫu giày còn lại trong kho là :" + mauGiay.getSoLuong(), Toast.LENGTH_SHORT).show();
             return;
         }
         HoaDon hoaDon = new HoaDon(maHoaDon, Calendar.getInstance().getTime());
