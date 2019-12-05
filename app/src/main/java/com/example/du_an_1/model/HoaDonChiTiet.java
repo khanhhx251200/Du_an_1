@@ -2,16 +2,24 @@ package com.example.du_an_1.model;
 
 import androidx.annotation.NonNull;
 
-public class HoaDonChiTiet {
+import java.io.Serializable;
+
+public class HoaDonChiTiet implements Serializable {
     private String maHoaDonChiTiet;
-    private String ngayMua;
-    private String tenMauGiay;
+    private HoaDon hoaDon;
+    private MauGiay mauGiay;
     private int soLuongMua;
 
-    public HoaDonChiTiet(String maHoaDonChiTiet, String ngayMua, String tenMauGiay, int soLuongMua) {
+    public HoaDonChiTiet(String maHoaDonChiTiet, HoaDon hoaDon, MauGiay mauGiay, int soLuongMua) {
         this.maHoaDonChiTiet = maHoaDonChiTiet;
-        this.ngayMua = ngayMua;
-        this.tenMauGiay = tenMauGiay;
+        this.hoaDon = hoaDon;
+        this.mauGiay = mauGiay;
+        this.soLuongMua = soLuongMua;
+    }
+
+    public HoaDonChiTiet(HoaDon hoaDon, MauGiay mauGiay, int soLuongMua) {
+        this.hoaDon = hoaDon;
+        this.mauGiay = mauGiay;
         this.soLuongMua = soLuongMua;
     }
 
@@ -23,20 +31,20 @@ public class HoaDonChiTiet {
         this.maHoaDonChiTiet = maHoaDonChiTiet;
     }
 
-    public String getNgayMua() {
-        return ngayMua;
+    public HoaDon getHoaDon() {
+        return hoaDon;
     }
 
-    public void setNgayMua(String ngayMua) {
-        this.ngayMua = ngayMua;
+    public void setHoaDon(HoaDon hoaDon) {
+        this.hoaDon = hoaDon;
     }
 
-    public String getTenMauGiay() {
-        return tenMauGiay;
+    public MauGiay getMauGiay() {
+        return mauGiay;
     }
 
-    public void setTenMauGiay(String tenMauGiay) {
-        this.tenMauGiay = tenMauGiay;
+    public void setMauGiay(MauGiay mauGiay) {
+        this.mauGiay = mauGiay;
     }
 
     public int getSoLuongMua() {
@@ -46,6 +54,4 @@ public class HoaDonChiTiet {
     public void setSoLuongMua(int soLuongMua) {
         this.soLuongMua = soLuongMua;
     }
-
-
 }

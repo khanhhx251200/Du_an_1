@@ -7,11 +7,15 @@ import android.database.sqlite.SQLiteDatabase;
 import com.example.du_an_1.database.DatabaseHealper;
 import com.example.du_an_1.model.HoaDonChiTiet;
 
+import java.text.SimpleDateFormat;
+
 public class HoaDonChiTietDAO {
     public static final String TABLE_NAME = "HoaDonChiTiet";
-    public static final String SQL_HOA_DON_CHI_TIET = "CREATE TABLE HoaDonChiTiet(mahoadonchitiet text primary key, ngaymua text, tenmaugiay text, soluongmua int)";
+    public static final String SQL_HOA_DON_CHI_TIET = "CREATE TABLE HoaDonChiTiet(mahoadonchitiet text primary key, mahoadon text, mamaugiay text, soluongmua integer)";
     private DatabaseHealper dbHelper;
     private SQLiteDatabase db;
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
+
 
     public HoaDonChiTietDAO(Context context) {
         dbHelper = new DatabaseHealper(context);
@@ -21,8 +25,8 @@ public class HoaDonChiTietDAO {
     public boolean insertHoaDonChitiet(HoaDonChiTiet hoaDonChiTiet) {
         ContentValues values = new ContentValues();
         values.put("mahoadonchitiet", hoaDonChiTiet.getMaHoaDonChiTiet());
-        values.put("ngaymua", hoaDonChiTiet.getNgayMua());
-        values.put("tenmaugiay", hoaDonChiTiet.getTenMauGiay());
+        values.put("mahoadon", hoaDonChiTiet.getHoaDon().getMaHoaDon());
+        values.put("mamaugiay", hoaDonChiTiet.getMauGiay().getMaMauGiay());
         values.put("soluongmua", hoaDonChiTiet.getSoLuongMua());
 
         long result = db.insert(TABLE_NAME, null, values);

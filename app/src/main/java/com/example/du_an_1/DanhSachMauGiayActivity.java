@@ -1,10 +1,12 @@
 package com.example.du_an_1;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
 import android.content.Intent;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -37,13 +39,15 @@ public class DanhSachMauGiayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_danh_sach_mau_giay);
         setTitle("Danh sách mẫu giày");
-        edSearch = findViewById(R.id.edTimMauGiay);
 
+        iconBack();
+        edSearch = findViewById(R.id.edTimMauGiay);
+        lvMG = findViewById(R.id.lvDanhSachMauGiay);
         mauGiayDAO = new MauGiayDAO(this);
         mauGiayList = new ArrayList<>();
         mauGiayList = mauGiayDAO.getAllMauGiay();
         mauGiayAdapter = new MauGiayAdapter(this, mauGiayList, hangGiayList);
-        lvMG = findViewById(R.id.lvDanhSachMauGiay);
+
         lvMG.setAdapter(mauGiayAdapter);
         lvMG.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -61,23 +65,27 @@ public class DanhSachMauGiayActivity extends AppCompatActivity {
             List<MauGiay> dsGiayTim = new ArrayList<>();
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                //keySearch = edSearch.getText().toString();
-                //dsGiayTim = mauGiayDAO.getMayGiayByName(keySearch);
-                //Toast.makeText(getApplication(), "beforeTextChanged" + dsGiayTim.size(), Toast.LENGTH_SHORT).show();
+                mauGiayList = mauGiayDAO.getAllMauGiay();
+                mauGiayAdapter = new MauGiayAdapter(getApplication(), mauGiayList, hangGiayList);
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                keySearch = edSearch.getText().toString();
-                dsGiayTim = mauGiayDAO.getMayGiayByName(keySearch);
-                Toast.makeText(getApplication(), "onTextChanged" + dsGiayTim.size(), Toast.LENGTH_SHORT).show();
+//                keySearch = edSearch.getText().toString();
+//                dsGiayTim = mauGiayDAO.getMayGiayByName(keySearch);
+//                Toast.makeText(getApplication(), "onTextChanged" + dsGiayTim.size(), Toast.LENGTH_SHORT).show();
+//                mauGiayAdapter = new MauGiayAdapter(getApplication(),dsGiayTim, hangGiayList);
+//                lvMG.setAdapter(mauGiayAdapter);
+
             }
 
             @Override
             public void afterTextChanged(Editable s) {
-                keySearch = edSearch.getText().toString();
-                dsGiayTim = mauGiayDAO.getMayGiayByName(keySearch);
-                Toast.makeText(getApplication(), "afterTextChanged" + dsGiayTim.size(), Toast.LENGTH_SHORT).show();
+//                keySearch = edSearch.getText().toString();
+//                dsGiayTim = mauGiayDAO.getMayGiayByName(keySearch);
+//                Toast.makeText(getApplication(), "afterTextChanged" + dsGiayTim.size(), Toast.LENGTH_SHORT).show();
+                mauGiayList = mauGiayDAO.getAllMauGiay();
+                mauGiayAdapter = new MauGiayAdapter(getApplication(), mauGiayList, hangGiayList);
             }
         });
 
@@ -97,5 +105,13 @@ public class DanhSachMauGiayActivity extends AppCompatActivity {
                 break;
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void iconBack() {
+        ActionBar actionBar = getSupportActionBar();
+        Drawable drawable = getResources().getDrawable(R.drawable.ic_arrow_back_black_24dp);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(drawable);
+
     }
 }
