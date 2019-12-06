@@ -54,6 +54,7 @@ public class ThemMauGiayActivity extends AppCompatActivity {
         edMauSac = findViewById(R.id.edMauSac);
         edGiaBan = findViewById(R.id.edGiaBan);
 
+        edMaMG.setText("MG00");
         spnMaHG = findViewById(R.id.spnMaHangGiay);
         getMaHangGiay();
         spnMaHG.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {

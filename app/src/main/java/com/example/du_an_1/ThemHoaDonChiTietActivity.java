@@ -51,6 +51,8 @@ public class ThemHoaDonChiTietActivity extends AppCompatActivity {
         iconBack();
         init();
         getTenMauGiay();
+
+        edMaHDCT.setText("HD00");
         hoaDonChiTietAdapter = new HoaDonChiTietAdapter(hoaDonChiTietList, this);
         lvHDCT.setAdapter(hoaDonChiTietAdapter);
 
@@ -69,11 +71,13 @@ public class ThemHoaDonChiTietActivity extends AppCompatActivity {
                     if (hoaDonChiTietList.size() > 0) {
                         int index = -1;
                         for (int i = 0; i < hoaDonChiTietList.size(); i++) {
-                            index = i;
-                            return;
+                            if (mauGiay.getMaMauGiay().equals(hoaDonChiTietList.get(i).getMauGiay().getMaMauGiay())) {
+                                index = i;
+                                break;
+                            }
                         }
                         if (index >= 0) {
-                            int tongSoLuongSach = hoaDonChiTietList.get(index).getSoLuongMua();
+                            int tongSoLuongSach = hoaDonChiTietList.get(index).getMauGiay().getSoLuong();
                             if ((hoaDonChiTietList.get(index).getSoLuongMua() + Integer.parseInt(edSoLuong.getText().toString())) > tongSoLuongSach) {
                                 Toast.makeText(ThemHoaDonChiTietActivity.this, "Số lượng mẫu giày tối đa bạn có thể mua là: " + (tongSoLuongSach - hoaDonChiTietList.get(index).getSoLuongMua() + ""), Toast.LENGTH_SHORT).show();
                                 return;
@@ -106,8 +110,11 @@ public class ThemHoaDonChiTietActivity extends AppCompatActivity {
             Toast.makeText(this, "Số lượng mẫu giày còn lại trong kho là :" + mauGiay.getSoLuong(), Toast.LENGTH_SHORT).show();
             return;
         }
+
+
         HoaDon hoaDon = new HoaDon(maHoaDon, Calendar.getInstance().getTime());
         HoaDonChiTiet hoaDonChiTiet = new HoaDonChiTiet(hoaDon, mauGiay, Integer.parseInt(soLuong));
+
         hoaDonChiTietList.add(hoaDonChiTiet);
         hoaDonChiTietAdapter = new HoaDonChiTietAdapter(hoaDonChiTietList, this);
         lvHDCT.setAdapter(hoaDonChiTietAdapter);
@@ -125,8 +132,10 @@ public class ThemHoaDonChiTietActivity extends AppCompatActivity {
     private int getindexofMaHD(String toString) {
         int index = -1;
         for (int i = 0; i < hoaDonList.size(); i++) {
-            index = i;
-            break;
+            if (hoaDonList.get(i).getMaHoaDon().equals(toString)) {
+                index = i;
+                break;
+            }
         }
         return index;
     }
@@ -140,13 +149,11 @@ public class ThemHoaDonChiTietActivity extends AppCompatActivity {
         btnXemHoaDon = findViewById(R.id.btnXemHoaDon);
         lvHDCT = findViewById(R.id.lvHDCT);
 
+        mauGiayDAO = new MauGiayDAO(this);
+        hoaDonDAO = new HoaDonDAO(this);
 
         hoaDonChiTietList = new ArrayList<>();
         hoaDonList = new ArrayList<>();
-
-
-        mauGiayDAO = new MauGiayDAO(this);
-        hoaDonDAO = new HoaDonDAO(this);
 
         try {
             hoaDonList = hoaDonDAO.getAllHoaDon();

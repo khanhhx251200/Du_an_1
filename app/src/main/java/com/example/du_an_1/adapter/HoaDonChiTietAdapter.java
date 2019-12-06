@@ -29,8 +29,8 @@ public class HoaDonChiTietAdapter extends BaseAdapter {
     }
 
     @Override
-    public HoaDonChiTiet getItem(int position) {
-        return hoaDonChiTietList.get(position);
+    public Object getItem(int position) {
+        return null;
     }
 
     @Override
@@ -54,11 +54,11 @@ public class HoaDonChiTietAdapter extends BaseAdapter {
             hoaDonHolder = (HoaDonHolder) view.getTag();
         }
         hoaDonHolder.tvTenMauGiay.setText("Tên mẫu giày: " + hoaDonChiTietList.get(i).getMauGiay().getTenMauGiay());
-        hoaDonHolder.tvGiaBan.setText("Giá bán: " + hoaDonChiTietList.get(i).getMauGiay().getGiaBan() + "");
+        hoaDonHolder.tvGiaBan.setText("Giá bán: " + hoaDonChiTietList.get(i).getMauGiay().getGiaBan() + "00 VND");
         hoaDonHolder.tvSoLuong.setText("Số lượng mua: " + hoaDonChiTietList.get(i).getSoLuongMua() + "");
         int soLuong = hoaDonChiTietList.get(i).getSoLuongMua();
         Double giatien = hoaDonChiTietList.get(i).getMauGiay().getGiaBan();
-        hoaDonHolder.tvThanhTien.setText("Giá: " + soLuong * giatien + "");
+        hoaDonHolder.tvThanhTien.setText("Giá: " + soLuong * giatien + "00 VND");
         hoaDonHolder.imgXoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -81,4 +81,9 @@ public class MauGiayAdapter extends BaseAdapter {
         TextView tvMaMG, tvTenMG, tvSoLuong, tvMauSac, tvGiaBan;
         ImageView imgDeleteMG;
     }
+
+    @Override
+    public void notifyDataSetChanged() {
+        super.notifyDataSetChanged();
+    }
 }

@@ -10,6 +10,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -67,15 +68,24 @@ public class DanhSachMauGiayActivity extends AppCompatActivity {
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 mauGiayList = mauGiayDAO.getAllMauGiay();
                 mauGiayAdapter = new MauGiayAdapter(getApplication(), mauGiayList, hangGiayList);
+                mauGiayAdapter.notifyDataSetChanged();
             }
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-//                keySearch = edSearch.getText().toString();
-//                dsGiayTim = mauGiayDAO.getMayGiayByName(keySearch);
-//                Toast.makeText(getApplication(), "onTextChanged" + dsGiayTim.size(), Toast.LENGTH_SHORT).show();
-//                mauGiayAdapter = new MauGiayAdapter(getApplication(),dsGiayTim, hangGiayList);
-//                lvMG.setAdapter(mauGiayAdapter);
+                keySearch = edSearch.getText().toString();
+                dsGiayTim = mauGiayDAO.getMayGiayByName(keySearch);
+                Toast.makeText(getApplication(), "onTextChanged" + dsGiayTim.size(), Toast.LENGTH_SHORT).show();
+                mauGiayAdapter = new MauGiayAdapter(getApplication(), dsGiayTim, hangGiayList);
+                lvMG.setAdapter(mauGiayAdapter);
+                mauGiayAdapter.notifyDataSetChanged();
+                if (keySearch.equals("")) {
+                    mauGiayList = mauGiayDAO.getAllMauGiay();
+                    mauGiayAdapter = new MauGiayAdapter(getApplication(), mauGiayList, hangGiayList);
+                    lvMG.setAdapter(mauGiayAdapter);
+                    mauGiayAdapter.notifyDataSetChanged();
+
+                }
 
             }
 
@@ -86,6 +96,7 @@ public class DanhSachMauGiayActivity extends AppCompatActivity {
 //                Toast.makeText(getApplication(), "afterTextChanged" + dsGiayTim.size(), Toast.LENGTH_SHORT).show();
                 mauGiayList = mauGiayDAO.getAllMauGiay();
                 mauGiayAdapter = new MauGiayAdapter(getApplication(), mauGiayList, hangGiayList);
+                mauGiayAdapter.notifyDataSetChanged();
             }
         });
 
