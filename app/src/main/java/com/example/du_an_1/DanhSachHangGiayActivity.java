@@ -67,7 +67,8 @@ public class DanhSachHangGiayActivity extends AppCompatActivity {
                 startActivity(new Intent(DanhSachHangGiayActivity.this, ThemHangGiayActivity.class));
                 break;
             case android.R.id.home:
-                onBackPressed();
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);

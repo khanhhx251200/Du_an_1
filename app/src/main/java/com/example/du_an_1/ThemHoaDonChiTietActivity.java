@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -22,6 +23,7 @@ import com.example.du_an_1.model.HoaDon;
 import com.example.du_an_1.model.HoaDonChiTiet;
 import com.example.du_an_1.model.MauGiay;
 
+import java.io.Serializable;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -48,6 +50,7 @@ public class ThemHoaDonChiTietActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_them_hoa_don_chi_tiet);
         setTitle("Hóa Đơn Chi Tiết");
+
         iconBack();
         init();
         getTenMauGiay();
@@ -98,19 +101,44 @@ public class ThemHoaDonChiTietActivity extends AppCompatActivity {
                 }
             }
         });
+        btnXemHoaDon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (hoaDonChiTietList.size() > 0) {
+                    Intent intent = new Intent(ThemHoaDonChiTietActivity.this, ThemHoaDonActivity.class);
+                    Bundle bundle = new Bundle();
+                    bundle.putString("mahoadon", edMaHDCT.getText().toString());
+                    bundle.putString("ngaymua", edNgayMua.getText().toString());
+                    List<MauGiay> mauGiayHoaDon = new ArrayList<>();
+                    ArrayList<Integer> soLuong = new ArrayList<>();
+                    for (int i = 0; i < hoaDonChiTietList.size(); i++) {
+                        MauGiay mauGiay = hoaDonChiTietList.get(i).getMauGiay();
+                        mauGiayHoaDon.add(mauGiay);
+                        soLuong.add(hoaDonChiTietList.get(i).getSoLuongMua());
+                    }
+                    intent.putIntegerArrayListExtra("soluong", soLuong);
+                    intent.putExtra("list", (Serializable) mauGiayHoaDon);
+                    intent.putExtra("bundle", bundle);
+                    startActivity(intent);
+
+                } else {
+                    Toast.makeText(ThemHoaDonChiTietActivity.this, "Hóa đơn chưa có sản phẩm!!", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
     }
 
     private void themgiohang() {
         final MauGiay mauGiay = (MauGiay) spnTenMG.getSelectedItem();
         String maHoaDon = edMaHDCT.getText().toString();
-        edNgayMua.setEnabled(false);
+        edMaHDCT.setEnabled(false);
         edNgayMua.setEnabled(false);
         String soLuong = edSoLuong.getText().toString();
+
         if (Integer.parseInt(soLuong) > mauGiay.getSoLuong()) {
             Toast.makeText(this, "Số lượng mẫu giày còn lại trong kho là :" + mauGiay.getSoLuong(), Toast.LENGTH_SHORT).show();
             return;
         }
-
 
         HoaDon hoaDon = new HoaDon(maHoaDon, Calendar.getInstance().getTime());
         HoaDonChiTiet hoaDonChiTiet = new HoaDonChiTiet(hoaDon, mauGiay, Integer.parseInt(soLuong));
@@ -174,7 +202,7 @@ public class ThemHoaDonChiTietActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                onBackPressed();
+                startActivity(new Intent(getApplication(), MainActivity.class));
                 break;
         }
         return super.onOptionsItemSelected(item);

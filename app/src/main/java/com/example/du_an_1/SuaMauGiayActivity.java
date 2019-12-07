@@ -133,7 +133,8 @@ public class SuaMauGiayActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                onBackPressed();
+                Intent intent = new Intent(this, DanhSachMauGiayActivity.class);
+                startActivity(intent);
                 break;
         }
         return super.onOptionsItemSelected(item);
