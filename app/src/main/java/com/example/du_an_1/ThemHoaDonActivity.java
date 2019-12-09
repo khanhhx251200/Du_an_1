@@ -76,20 +76,26 @@ public class ThemHoaDonActivity extends AppCompatActivity {
                 HoaDon hoaDon = null;
                 Calendar calendar = Calendar.getInstance();
                 int hour = calendar.get(Calendar.HOUR_OF_DAY);
-                int minutes = calendar.get(Calendar.MINUTE);
+                int minute = calendar.get(Calendar.MINUTE);
                 int second = calendar.get(Calendar.SECOND);
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH + 1);
                 int day = calendar.get(Calendar.DAY_OF_MONTH);
-                String date = year + "-" + month + "-" + day + "  " + hour + ":" + minutes + ":" + second;
+                int month = calendar.get(Calendar.MONTH) + 1;
+                int year = calendar.get(Calendar.YEAR);
+                String date = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
                 try {
-                    hoaDon = new HoaDon(maHoaDon, simpleDateFormat.parse(date));
-                } catch (ParseException e) {
+                    hoaDon = new HoaDon(maHoaDon, Calendar.getInstance().getTime());
+                } catch (Exception e) {
                     e.printStackTrace();
                     Toast.makeText(ThemHoaDonActivity.this, "Không lưu được ngày giờ", Toast.LENGTH_SHORT).show();
                 }
                 for (int i = 0; i < mauGiayList.size(); i++) {
                     HoaDonChiTiet hoaDonChiTiet = new HoaDonChiTiet(hoaDon, mauGiayList.get(i), soLuong.get(i));
+                    long result1 = hoaDonDAO.insertHoaDon(hoaDon);
+                    if (result1 > 0) {
+                        Toast.makeText(ThemHoaDonActivity.this, "Thành công!!", Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(ThemHoaDonActivity.this, "Thất bại!", Toast.LENGTH_SHORT).show();
+                    }
                     boolean result = hoaDonChiTietDAO.insertHoaDonChitiet(hoaDonChiTiet);
                     if (result) {
                         MauGiay mauGiay = mauGiayList.get(i);
@@ -123,7 +129,6 @@ public class ThemHoaDonActivity extends AppCompatActivity {
         hoaDonChiTietDAO = new HoaDonChiTietDAO(this);
 
         mauGiayList = new ArrayList<>();
-
         soLuong = new ArrayList<>();
 
 

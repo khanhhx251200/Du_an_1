@@ -53,7 +53,7 @@ public class HoaDonAdapter extends BaseAdapter {
         } else {
             xemHoaDonHolder = (XemHoaDonHolder) convertView.getTag();
         }
-        xemHoaDonHolder.tvGiaBan.setText("Giá bìa : " + mauGiayList.get(position) + "00 VNĐ");
+        xemHoaDonHolder.tvGiaBan.setText("Giá bìa : " + mauGiayList.get(position).getGiaBan() + "00 VNĐ");
 
         xemHoaDonHolder.tvSoLuong.setText("Số lượng : " + soLuong.get(position) + "");
         xemHoaDonHolder.tvTenMauGiay.setText("Tên mẫu giày: " + mauGiayList.get(position).getTenMauGiay());

@@ -34,16 +34,7 @@ public class HoaDonDAO {
         return db.insert(TABLE_NAME, null, contentValues);
     }
 
-    public int updateHoaDon(HoaDon hoaDon) {
-        ContentValues contentValues = new ContentValues();
-        contentValues.put("mahoadon", hoaDon.getMaHoaDon());
-        contentValues.put("ngaymua", simpleDateFormat.format(hoaDon.getNgayMua()));
-        return db.update(TABLE_NAME, contentValues, "mahoadon=?", new String[]{hoaDon.getMaHoaDon()});
-    }
 
-    public int deleteHoaDon(String mahoadon) {
-        return db.delete(TABLE_NAME, "mahoadon=?", new String[]{mahoadon});
-    }
 
     public List<HoaDon> getAllHoaDon() throws ParseException {
         List<HoaDon> listHoaDon = new ArrayList<>();

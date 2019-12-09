@@ -93,4 +93,27 @@ public class MauGiayDAO {
         }
         return mauGiayList;
     }
+
+    public List<MauGiay> getTop10(String month) {
+        List<MauGiay> mauGiayList = new ArrayList<>();
+        if (Integer.parseInt(month) < 10) {
+            month = "0" + month;
+        }
+        String sql = "select mamaugiay, Sum(soluong) from HoaDonChiTiet inner join HoaDon on HoaDon.maHoaDon=HoaDonChiTiet.maHoaDonChiTiet " +
+                "where strftime('%m', HoaDon.ngayMua) = ? group by mamaugiay order by soluong desc limit 10";
+        Cursor cursor = db.rawQuery(sql, new String[]{month});
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            String mamaugiay = cursor.getString(0);
+            String mahanggiay = "";
+            String tenmaugiay = "";
+            int soluong = cursor.getInt(3);
+            String mausac = "";
+            double giaban = 0.0;
+            mauGiayList.add(new MauGiay(mamaugiay, mahanggiay, tenmaugiay, soluong, mausac, giaban));
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return mauGiayList;
+    }
 }

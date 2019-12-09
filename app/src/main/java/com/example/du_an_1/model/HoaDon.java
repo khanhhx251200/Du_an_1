@@ -1,5 +1,7 @@
 package com.example.du_an_1.model;
 
+import androidx.annotation.NonNull;
+
 import java.util.Date;
 
 public class HoaDon {
@@ -25,5 +27,11 @@ public class HoaDon {
 
     public void setNgayMua(Date ngayMua) {
         this.ngayMua = ngayMua;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return maHoaDon;
     }
 }
