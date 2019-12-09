@@ -5,12 +5,12 @@ import androidx.annotation.NonNull;
 import java.io.Serializable;
 
 public class HoaDonChiTiet implements Serializable {
-    private String maHoaDonChiTiet;
+    private int maHoaDonChiTiet;
     private HoaDon hoaDon;
     private MauGiay mauGiay;
     private int soLuongMua;
 
-    public HoaDonChiTiet(String maHoaDonChiTiet, HoaDon hoaDon, MauGiay mauGiay, int soLuongMua) {
+    public HoaDonChiTiet(int maHoaDonChiTiet, HoaDon hoaDon, MauGiay mauGiay, int soLuongMua) {
         this.maHoaDonChiTiet = maHoaDonChiTiet;
         this.hoaDon = hoaDon;
         this.mauGiay = mauGiay;
@@ -23,11 +23,11 @@ public class HoaDonChiTiet implements Serializable {
         this.soLuongMua = soLuongMua;
     }
 
-    public String getMaHoaDonChiTiet() {
+    public int getMaHoaDonChiTiet() {
         return maHoaDonChiTiet;
     }
 
-    public void setMaHoaDonChiTiet(String maHoaDonChiTiet) {
+    public void setMaHoaDonChiTiet(int maHoaDonChiTiet) {
         this.maHoaDonChiTiet = maHoaDonChiTiet;
     }
 

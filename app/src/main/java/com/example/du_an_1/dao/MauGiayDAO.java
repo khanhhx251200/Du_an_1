@@ -99,18 +99,19 @@ public class MauGiayDAO {
         if (Integer.parseInt(month) < 10) {
             month = "0" + month;
         }
-        String sql = "select mamaugiay, Sum(soluong) from HoaDonChiTiet inner join HoaDon on HoaDon.maHoaDon=HoaDonChiTiet.maHoaDonChiTiet " +
-                "where strftime('%m', HoaDon.ngayMua) = ? group by mamaugiay order by soluong desc limit 10";
+        String sql = "select mamaugiay,Sum(soluongmua) from HoaDonChiTiet inner join HoaDon on HoaDon.mahoadon=HoaDonChiTiet.mahoadon " +
+                "where strftime('%m', HoaDon.ngaymua) = ? group by mamaugiay order by soluongmua desc limit 10";
         Cursor cursor = db.rawQuery(sql, new String[]{month});
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {
-            String mamaugiay = cursor.getString(0);
-            String mahanggiay = "";
-            String tenmaugiay = "";
-            int soluong = cursor.getInt(3);
-            String mausac = "";
-            double giaban = 0.0;
-            mauGiayList.add(new MauGiay(mamaugiay, mahanggiay, tenmaugiay, soluong, mausac, giaban));
+            MauGiay mauGiay = new MauGiay();
+            mauGiay.setMaMauGiay(cursor.getString(0));
+            mauGiay.setSoLuong(cursor.getInt(1));
+            mauGiay.setGiaBan(0.0);
+            mauGiay.setMauSac("");
+            mauGiay.setMaHangGiay("");
+            mauGiay.setTenMauGiay("");
+            mauGiayList.add(mauGiay);
             cursor.moveToNext();
         }
         cursor.close();

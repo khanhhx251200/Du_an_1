@@ -20,6 +20,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.example.du_an_1.adapter.MauGiayAdapter;
+import com.example.du_an_1.dao.HangGiayDAO;
 import com.example.du_an_1.dao.MauGiayDAO;
 import com.example.du_an_1.model.HangGiay;
 import com.example.du_an_1.model.MauGiay;
@@ -33,6 +34,7 @@ public class DanhSachMauGiayActivity extends AppCompatActivity {
     private List<MauGiay> mauGiayList;
     private List<HangGiay> hangGiayList;
     private MauGiayDAO mauGiayDAO;
+    private HangGiayDAO hangGiayDAO;
     private MauGiayAdapter mauGiayAdapter;
 
     @Override
@@ -45,7 +47,10 @@ public class DanhSachMauGiayActivity extends AppCompatActivity {
         edSearch = findViewById(R.id.edTimMauGiay);
         lvMG = findViewById(R.id.lvDanhSachMauGiay);
         mauGiayDAO = new MauGiayDAO(this);
+        hangGiayDAO = new HangGiayDAO(this);
         mauGiayList = new ArrayList<>();
+        hangGiayList = new ArrayList<>();
+        hangGiayList = hangGiayDAO.getAllHangGiay();
         mauGiayList = mauGiayDAO.getAllMauGiay();
         mauGiayAdapter = new MauGiayAdapter(this, mauGiayList, hangGiayList);
 

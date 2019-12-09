@@ -39,6 +39,7 @@ public class GiayBanChayActivity extends AppCompatActivity {
         setContentView(R.layout.activity_giay_ban_chay);
         setTitle("Top 10 giày bán chạy");
 
+
         iconBack();
         init();
 
@@ -54,6 +55,7 @@ public class GiayBanChayActivity extends AppCompatActivity {
                         mauGiayList = mauGiayDAO.getTop10(month);
 
                     } catch (Exception ex) {
+                        edGiayBanChay.setText(ex + "");
                         Toast.makeText(GiayBanChayActivity.this, "Vui lòng nhập đúng tháng" + ex, Toast.LENGTH_SHORT).show();
                     }
                     if (mauGiayList.size() > 0) {
