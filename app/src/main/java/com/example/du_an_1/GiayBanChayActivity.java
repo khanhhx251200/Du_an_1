@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.du_an_1.adapter.LvMauGiayBanChayAdapter;
 import com.example.du_an_1.adapter.MauGiayAdapter;
 import com.example.du_an_1.dao.HangGiayDAO;
 import com.example.du_an_1.dao.MauGiayDAO;
@@ -28,10 +29,9 @@ public class GiayBanChayActivity extends AppCompatActivity {
     Button btnGiayBanChay;
     ListView lvGiayBanChay;
     List<MauGiay> mauGiayList;
-    List<HangGiay> hangGiayList;
     HangGiayDAO hangGiayDAO;
     MauGiayDAO mauGiayDAO;
-    MauGiayAdapter mauGiayAdapter;
+    LvMauGiayBanChayAdapter mauGiayAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,11 +59,14 @@ public class GiayBanChayActivity extends AppCompatActivity {
                         Toast.makeText(GiayBanChayActivity.this, "Vui lòng nhập đúng tháng" + ex, Toast.LENGTH_SHORT).show();
                     }
                     if (mauGiayList.size() > 0) {
-                        mauGiayAdapter = new MauGiayAdapter(getApplication(), mauGiayList, hangGiayList);
+                        ;
+                        mauGiayAdapter = new LvMauGiayBanChayAdapter(getApplication(), mauGiayList);
                         lvGiayBanChay.setAdapter(mauGiayAdapter);
+                        mauGiayAdapter.notifyDataSetChanged();
+
                     } else {
                         mauGiayList.clear();
-                        mauGiayAdapter = new MauGiayAdapter(getApplication(), mauGiayList, hangGiayList);
+                        mauGiayAdapter = new LvMauGiayBanChayAdapter(getApplication(), mauGiayList);
                         lvGiayBanChay.setAdapter(mauGiayAdapter);
                     }
                 }
@@ -95,8 +98,7 @@ public class GiayBanChayActivity extends AppCompatActivity {
         mauGiayDAO = new MauGiayDAO(this);
         hangGiayDAO = new HangGiayDAO(this);
         mauGiayList = new ArrayList<>();
-        hangGiayList = new ArrayList<>();
-        hangGiayList = hangGiayDAO.getAllHangGiay();
+
 
     }
 

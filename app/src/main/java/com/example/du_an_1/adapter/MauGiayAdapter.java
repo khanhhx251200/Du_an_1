@@ -77,6 +77,7 @@ public class MauGiayAdapter extends BaseAdapter {
         mauGiayHolder.tvGiaBan.setText(String.valueOf(mauGiayList.get(i).getGiaBan()) + "00 VNĐ");
         return view;
     }
+
     public class MauGiayHolder {
         TextView tvMaMG, tvTenMG, tvSoLuong, tvMauSac, tvGiaBan;
         ImageView imgDeleteMG;
@@ -85,5 +86,11 @@ public class MauGiayAdapter extends BaseAdapter {
     @Override
     public void notifyDataSetChanged() {
         super.notifyDataSetChanged();
+    }
+
+    public void ondatasetchanged(List<MauGiay> mauGiayList, List<HangGiay> hangGiayList) {
+        this.mauGiayList = mauGiayList;
+        this.hangGiayList = hangGiayList;
+        notifyDataSetChanged();
     }
 }

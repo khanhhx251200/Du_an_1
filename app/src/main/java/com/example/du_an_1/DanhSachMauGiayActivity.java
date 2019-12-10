@@ -69,6 +69,7 @@ public class DanhSachMauGiayActivity extends AppCompatActivity {
         edSearch.addTextChangedListener(new TextWatcher() {
             String keySearch;
             List<MauGiay> dsGiayTim = new ArrayList<>();
+
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
                 mauGiayList = mauGiayDAO.getAllMauGiay();
@@ -133,5 +134,15 @@ public class DanhSachMauGiayActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(drawable);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        mauGiayList.clear();
+        hangGiayList.clear();
+        mauGiayList = mauGiayDAO.getAllMauGiay();
+        hangGiayList = hangGiayDAO.getAllHangGiay();
+        mauGiayAdapter.ondatasetchanged(mauGiayList, hangGiayList);
     }
 }
