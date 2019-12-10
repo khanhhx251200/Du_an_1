@@ -35,7 +35,6 @@ public class HoaDonDAO {
     }
 
 
-
     public List<HoaDon> getAllHoaDon() throws ParseException {
         List<HoaDon> listHoaDon = new ArrayList<>();
         Cursor cursor = db.query(TABLE_NAME, null, null, null, null, null, null);

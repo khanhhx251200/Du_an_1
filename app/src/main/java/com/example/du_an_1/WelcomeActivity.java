@@ -15,7 +15,7 @@ public class WelcomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
         setTitle("Quản lý cửa hàng Sneaker");
-        CountDownTimer countDownTimer = new CountDownTimer(1500,10) {
+        CountDownTimer countDownTimer = new CountDownTimer(1500, 10) {
             @Override
             public void onTick(long millisUntilFinished) {
 
@@ -23,13 +23,13 @@ public class WelcomeActivity extends AppCompatActivity {
 
             @Override
             public void onFinish() {
-                startActivity(new Intent(WelcomeActivity.this,MainActivity.class));
+                startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
             }
 
         };
         countDownTimer.start();
 
     }
-    }
+}
 
 

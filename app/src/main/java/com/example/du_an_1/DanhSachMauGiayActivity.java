@@ -81,7 +81,6 @@ public class DanhSachMauGiayActivity extends AppCompatActivity {
             public void onTextChanged(CharSequence s, int start, int before, int count) {
                 keySearch = edSearch.getText().toString();
                 dsGiayTim = mauGiayDAO.getMayGiayByName(keySearch);
-                Toast.makeText(getApplication(), "onTextChanged" + dsGiayTim.size(), Toast.LENGTH_SHORT).show();
                 mauGiayAdapter = new MauGiayAdapter(getApplication(), dsGiayTim, hangGiayList);
                 lvMG.setAdapter(mauGiayAdapter);
                 mauGiayAdapter.notifyDataSetChanged();
@@ -97,9 +96,6 @@ public class DanhSachMauGiayActivity extends AppCompatActivity {
 
             @Override
             public void afterTextChanged(Editable s) {
-//                keySearch = edSearch.getText().toString();
-//                dsGiayTim = mauGiayDAO.getMayGiayByName(keySearch);
-//                Toast.makeText(getApplication(), "afterTextChanged" + dsGiayTim.size(), Toast.LENGTH_SHORT).show();
                 mauGiayList = mauGiayDAO.getAllMauGiay();
                 mauGiayAdapter = new MauGiayAdapter(getApplication(), mauGiayList, hangGiayList);
                 mauGiayAdapter.notifyDataSetChanged();

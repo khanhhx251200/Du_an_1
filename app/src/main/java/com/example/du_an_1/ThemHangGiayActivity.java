@@ -63,7 +63,12 @@ public class ThemHangGiayActivity extends AppCompatActivity {
         String tenHanggiay = edTenHangGiay.getText().toString();
         String moTa = edMoTa.getText().toString();
         int viTri = Integer.parseInt(edViTri.getText().toString());
-
+        for (int i = 0; i < hangGiayList.size(); i++) {
+            if (maHanggiay.equals(hangGiayList.get(i).getMaHangGiay())) {
+                Toast.makeText(this, "Mã hãng giày đã tồn tại!", Toast.LENGTH_SHORT).show();
+                return;
+            }
+        }
         hangGiay = new HangGiay(maHanggiay, tenHanggiay, moTa, viTri);
 
         boolean isInsertTrue = hangGiayDAO.insertHangGiay(hangGiay);
@@ -110,8 +115,6 @@ public class ThemHangGiayActivity extends AppCompatActivity {
             tilViTri.setError("Vui lòng nhập Vị trí");
             isValid = false;
         } else {
-
-
             tilViTri.setErrorEnabled(false);
         }
     }
