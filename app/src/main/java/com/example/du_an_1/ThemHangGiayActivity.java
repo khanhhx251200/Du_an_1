@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ScrollView;
 import android.widget.Toast;
 
 import com.example.du_an_1.dao.HangGiayDAO;
@@ -30,6 +31,7 @@ public class ThemHangGiayActivity extends AppCompatActivity {
     HangGiayDAO hangGiayDAO;
     List<HangGiay> hangGiayList;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +42,7 @@ public class ThemHangGiayActivity extends AppCompatActivity {
         edTenHangGiay = findViewById(R.id.edTenHangGiay);
         edMoTa = findViewById(R.id.edMoTa);
         edViTri = findViewById(R.id.edViTri);
+
 
         tilMaHangGiay = findViewById(R.id.tilmhg);
         tilTenHangGiay = findViewById(R.id.tilthg);

@@ -13,7 +13,7 @@ import com.example.du_an_1.dao.HoaDonDAO;
 
 public class DatabaseHealper extends SQLiteOpenHelper {
     public static final String DATABASE_NAME = "dbSneakerShopManager";
-    public static final int VERSION = 3;
+    public static final int VERSION = 13;
 
     public DatabaseHealper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, VERSION);

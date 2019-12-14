@@ -74,14 +74,7 @@ public class ThemHoaDonActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 HoaDon hoaDon = null;
-                Calendar calendar = Calendar.getInstance();
-                int hour = calendar.get(Calendar.HOUR_OF_DAY);
-                int minute = calendar.get(Calendar.MINUTE);
-                int second = calendar.get(Calendar.SECOND);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
-                int month = calendar.get(Calendar.MONTH) + 1;
-                int year = calendar.get(Calendar.YEAR);
-                String date = year + "-" + month + "-" + day + " " + hour + ":" + minute + ":" + second;
+
                 try {
                     hoaDon = new HoaDon(maHoaDon, Calendar.getInstance().getTime());
                 } catch (Exception e) {
@@ -91,20 +84,13 @@ public class ThemHoaDonActivity extends AppCompatActivity {
                 for (int i = 0; i < mauGiayList.size(); i++) {
                     HoaDonChiTiet hoaDonChiTiet = new HoaDonChiTiet(hoaDon, mauGiayList.get(i), soLuong.get(i));
                     long result1 = hoaDonDAO.insertHoaDon(hoaDon);
-                    if (result1 > 0) {
-                        Toast.makeText(ThemHoaDonActivity.this, "Thành công!!", Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(ThemHoaDonActivity.this, "Thất bại!", Toast.LENGTH_SHORT).show();
-                    }
-                    boolean result = hoaDonChiTietDAO.insertHoaDonChitiet(hoaDonChiTiet);
-                    if (result) {
+                    long result = hoaDonChiTietDAO.insertHoaDonChitiet(hoaDonChiTiet);
+                    if (result > 0) {
                         MauGiay mauGiay = mauGiayList.get(i);
                         int resultUpdateMauGiay = mauGiayDAO.updateMauGiay(mauGiay.getMaMauGiay(), mauGiay.getMaHangGiay(), mauGiay.getTenMauGiay(), mauGiay.getSoLuong() - soLuong.get(i), mauGiay.getMauSac(), mauGiay.getGiaBan());
                         if (resultUpdateMauGiay > 0) {
                             Toast.makeText(ThemHoaDonActivity.this, "Thành công!!", Toast.LENGTH_SHORT).show();
                             startActivity(new Intent(getApplication(), MainActivity.class));
-                        } else {
-                            Toast.makeText(ThemHoaDonActivity.this, "Thất bại!", Toast.LENGTH_SHORT).show();
                         }
                     } else {
                         Toast.makeText(ThemHoaDonActivity.this, "Thất bại!", Toast.LENGTH_SHORT).show();

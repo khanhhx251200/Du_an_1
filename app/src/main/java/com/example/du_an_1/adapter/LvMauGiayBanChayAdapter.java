@@ -64,7 +64,7 @@ public class LvMauGiayBanChayAdapter extends BaseAdapter {
     }
 
     public class MauGiayBanChayHolder {
-        TextView tvMaMG, tvSoLuong;
+        TextView tvMaMG, tvSoLuong, tvTenMauGiay;
 
     }
 
