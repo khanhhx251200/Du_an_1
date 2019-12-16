@@ -41,7 +41,7 @@ public class LvThongKeHoaDonAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup parent) {
         ThongKeHolder thongKeHolder = null;
         if (view == null) {
-            LayoutInflater.from(context).inflate(R.layout.lv_thongkehoadonfragment, parent, false);
+            view = LayoutInflater.from(context).inflate(R.layout.lv_thongkehoadonfragment, parent, false);
             thongKeHolder = new ThongKeHolder();
             thongKeHolder.tvMHDTK = view.findViewById(R.id.tvMHDTK);
             thongKeHolder.tvTime = view.findViewById(R.id.tvTimeMHD);
