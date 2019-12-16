@@ -4,14 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="horizontal"
+    android:orientation="vertical"
     tools:context=".DoanhThuActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Chức năng đang trong giai đoạn phát triển"
-        android:textSize="15dp" />
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/tlDoanhThu"
+        android:layout_width="match_parent"
+        android:layout_height="50dp" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vpDoanhThu"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 
 </LinearLayout>

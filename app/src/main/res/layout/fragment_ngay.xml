@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/bill" />
+
+    <RelativeLayout
+        android:layout_width="380dp"
+        android:layout_height="wrap_content">
+
+        <EditText
+            android:id="@+id/edFragmentNgay"
+            android:layout_width="216dp"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/btnFragmentNgay"
+            android:layout_marginLeft="16dp"
+            android:ems="20"
+            android:textAlignment="center" />
+
+        <ImageView
+            android:id="@+id/imgCalendar"
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_alignBottom="@id/btnFragmentNgay"
+            android:layout_toLeftOf="@id/btnFragmentNgay"
+            android:paddingBottom="4dp"
+            android:src="@drawable/calendar" />
+
+        <Button
+            android:id="@+id/btnFragmentNgay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_marginLeft="8dp"
+            android:text="Tìm" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvTongDoanhThuTheoNgay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:textAlignment="center"
+        android:textColor="#673AB7"
+        android:textSize="16sp"
+        android:textStyle="bold" />
+
+    <ListView
+        android:id="@+id/lvFragmentNgay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp" />
+
+
+</LinearLayout>
