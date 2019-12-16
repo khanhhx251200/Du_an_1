@@ -131,8 +131,10 @@ public class FragmentThongKeDoanhThuTheoNgay extends Fragment {
                     lvThongKeHoaDonAdapter = new LvThongKeHoaDonAdapter(thongKeList, context);
                     lv.setAdapter(lvThongKeHoaDonAdapter);
                 }
+
             }
         });
+
 
     }
 

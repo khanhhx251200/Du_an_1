@@ -18,7 +18,7 @@
             android:src="@drawable/bill1" />
 
         <TextView
-            android:id="@+id/tvMHD"
+            android:id="@+id/tvMHDTK"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/imgbill"

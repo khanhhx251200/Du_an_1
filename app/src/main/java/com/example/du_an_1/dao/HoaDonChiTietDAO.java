@@ -42,7 +42,7 @@ public class HoaDonChiTietDAO {
 
     public List<ThongKe> getHoaDonTheoNgay(String ngay) {
         List<ThongKe> thongKeList = new ArrayList<>();
-        String sSQL = "select HoaDonChiTiet.mahoadon, HoaDon.ngaymua, sum((MauGiay.giaban*HoaDonChiTiet.soluongmua)) as tongtien from HoaDonChiTiet inner join MauGiay on HoaDonChiTiet.mamaugiay=MauGiay.mamaugiay inner join HoaDon on HoaDon.mahoadon=HoaDonChiTiet.mahoadon where strftime('%Y %m %d', HoaDon.ngaymua) = ? group by HoaDonChiTiet.mahoadon,HoaDon.ngaymua order by HoaDon.ngaymua asc";
+        String sSQL = "select HoaDonChiTiet.mahoadon, HoaDon.ngaymua, sum((MauGiay.giaban*HoaDonChiTiet.soluongmua)) as tongtien from HoaDonChiTiet inner join MauGiay on HoaDonChiTiet.mamaugiay=MauGiay.mamaugiay inner join HoaDon on HoaDon.mahoadon=HoaDonChiTiet.mahoadon where strftime('%Y %m %d', HoaDon.ngaymua) = strftime('%Y %m %d', ?) group by HoaDonChiTiet.mahoadon,HoaDon.ngaymua order by HoaDon.ngaymua asc";
         Cursor cursor = db.rawQuery(sSQL, new String[]{ngay});
         cursor.moveToFirst();
         while (!cursor.isAfterLast()) {

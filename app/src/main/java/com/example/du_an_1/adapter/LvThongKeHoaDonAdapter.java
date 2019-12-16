@@ -43,20 +43,20 @@ public class LvThongKeHoaDonAdapter extends BaseAdapter {
         if (view == null) {
             LayoutInflater.from(context).inflate(R.layout.lv_thongkehoadonfragment, parent, false);
             thongKeHolder = new ThongKeHolder();
-            thongKeHolder.tvMHD = view.findViewById(R.id.tvMHD);
+            thongKeHolder.tvMHDTK = view.findViewById(R.id.tvMHDTK);
             thongKeHolder.tvTime = view.findViewById(R.id.tvTimeMHD);
             thongKeHolder.tvTongTien = view.findViewById(R.id.tvTongTienMHD);
             view.setTag(thongKeHolder);
         } else {
             thongKeHolder = (ThongKeHolder) view.getTag();
         }
-        thongKeHolder.tvMHD.setText(thongKeList.get(i).getMahoadon());
-        thongKeHolder.tvTime.setText(thongKeList.get(i).getNgaymua());
-        thongKeHolder.tvTongTien.setText(thongKeList.get(i).getTongtien());
+        thongKeHolder.tvMHDTK.setText("Mã hóa đơn: " + thongKeList.get(i).getMahoadon());
+        thongKeHolder.tvTime.setText("Ngày mua: " + thongKeList.get(i).getNgaymua());
+        thongKeHolder.tvTongTien.setText("Tổng tiền: " + thongKeList.get(i).getTongtien());
         return view;
     }
 
     public class ThongKeHolder {
-        TextView tvMHD, tvTongTien, tvTime;
+        TextView tvMHDTK, tvTongTien, tvTime;
     }
 }
