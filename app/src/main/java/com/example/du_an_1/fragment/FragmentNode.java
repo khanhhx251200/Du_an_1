@@ -21,13 +21,15 @@ public class FragmentNode extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return new FragmentThongKeDoanhThuTheoNgay();
+            case 1:
+                return new FragmentThongKeTheoKhoangThoiGian();
         }
         return null;
     }
 
     @Override
     public int getCount() {
-        return 1;
+        return 2;
     }
 
     @Nullable
@@ -36,6 +38,8 @@ public class FragmentNode extends FragmentPagerAdapter {
         switch (position) {
             case 0:
                 return "Thống kê doanh thu theo ngày";
+            case 1:
+                return "Thống kê doanh thu theo khoảng thời gian";
         }
 
 

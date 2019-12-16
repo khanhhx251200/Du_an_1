@@ -124,7 +124,7 @@ public class FragmentThongKeDoanhThuTheoNgay extends Fragment {
                         double doanhthu = Double.parseDouble(thongKeList.get(i).getTongtien());
                         tongdoanhthu += doanhthu;
                     }
-                    tvTongDoanhThuTheoNgay.setText("Tổng doanh thu theo ngày là: " + tongdoanhthu);
+                    tvTongDoanhThuTheoNgay.setText("Tổng doanh thu theo ngày là: " + tongdoanhthu + "00 VNĐ");
                 } else {
                     tvTongDoanhThuTheoNgay.setText("");
                     thongKeList.clear();
