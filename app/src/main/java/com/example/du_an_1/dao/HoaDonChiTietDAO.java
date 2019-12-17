@@ -104,4 +104,22 @@ public class HoaDonChiTietDAO {
         cursor.close();
         return thongKeList;
     }
+
+    public List<ThongKe> getHoaDonChiTietTheoMaHoaDon(String mahoadon) {
+        List<ThongKe> thongKeList = new ArrayList<>();
+        String sSQL = "select HoaDonChiTiet.mahoadonchitiet, HoaDonChiTiet.mamaugiay, HoaDonChiTiet.soluongmua, MauGiay.giaban from HoaDonChiTiet inner join MauGiay on MauGiay.mamaugiay=HoaDonChiTiet.mamaugiay where HoaDonChiTiet.mahoadon=?";
+        Cursor cursor = db.rawQuery(sSQL, new String[]{mahoadon});
+        cursor.moveToFirst();
+        while (!cursor.isAfterLast()) {
+            String mahoadonchitiet = cursor.getString(0);
+            String mamaugiay = cursor.getString(1);
+            String soluong = cursor.getString(2);
+            String giaban = cursor.getString(3);
+            ThongKe thongKe = new ThongKe(mahoadonchitiet, mamaugiay, soluong, giaban);
+            thongKeList.add(thongKe);
+            cursor.moveToNext();
+        }
+        cursor.close();
+        return thongKeList;
+    }
 }

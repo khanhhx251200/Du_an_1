@@ -23,6 +23,7 @@ public class FragmentNode extends FragmentPagerAdapter {
                 return new FragmentThongKeDoanhThuTheoNgay();
             case 1:
                 return new FragmentThongKeTheoKhoangThoiGian();
+
         }
         return null;
     }
@@ -39,7 +40,8 @@ public class FragmentNode extends FragmentPagerAdapter {
             case 0:
                 return "Thống kê doanh thu theo ngày";
             case 1:
-                return "Thống kê doanh thu theo khoảng thời gian";
+                return "Thống kê theo khoảng thời gian";
+
         }
 
 

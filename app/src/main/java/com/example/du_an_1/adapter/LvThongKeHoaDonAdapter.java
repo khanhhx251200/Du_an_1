@@ -52,7 +52,7 @@ public class LvThongKeHoaDonAdapter extends BaseAdapter {
         }
         thongKeHolder.tvMHDTK.setText("Mã hóa đơn: " + thongKeList.get(i).getMahoadon());
         thongKeHolder.tvTime.setText("Ngày mua: " + thongKeList.get(i).getNgaymua());
-        thongKeHolder.tvTongTien.setText("Tổng tiền: " + thongKeList.get(i).getTongtien());
+        thongKeHolder.tvTongTien.setText("Tổng tiền: " + thongKeList.get(i).getTongtien() + "00 VND");
         return view;
     }
 

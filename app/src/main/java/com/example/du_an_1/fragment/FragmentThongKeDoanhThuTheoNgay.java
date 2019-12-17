@@ -2,11 +2,13 @@ package com.example.du_an_1.fragment;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
@@ -21,6 +23,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import com.example.du_an_1.R;
+import com.example.du_an_1.XemHoaDonChiTietActivity;
 import com.example.du_an_1.adapter.LvThongKeHoaDonAdapter;
 import com.example.du_an_1.dao.HoaDonChiTietDAO;
 import com.example.du_an_1.model.ThongKe;
@@ -125,6 +128,14 @@ public class FragmentThongKeDoanhThuTheoNgay extends Fragment {
                         tongdoanhthu += doanhthu;
                     }
                     tvTongDoanhThuTheoNgay.setText("Tổng doanh thu theo ngày là: " + tongdoanhthu + "00 VNĐ");
+                    lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
+                            Intent intent = new Intent(getActivity(), XemHoaDonChiTietActivity.class);
+                            intent.putExtra("mahoadon", thongKeList.get(i).getMahoadon());
+                            startActivity(intent);
+                        }
+                    });
                 } else {
                     tvTongDoanhThuTheoNgay.setText("");
                     thongKeList.clear();
