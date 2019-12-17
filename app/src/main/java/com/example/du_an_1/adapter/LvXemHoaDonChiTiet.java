@@ -52,7 +52,7 @@ public class LvXemHoaDonChiTiet extends BaseAdapter {
         }
         xemHoaDonHolder.tvMaHDCT.setText("Mã hóa đơn chi tiết: " + thongKeList.get(i).getMahoadonchitiet());
         xemHoaDonHolder.tvMaMauGiay.setText("Mã mẫu giày: " + thongKeList.get(i).getMagiay());
-        xemHoaDonHolder.tvSoLuong.setText("Số lượng mua: " + thongKeList.get(i).getSoluong());
+        xemHoaDonHolder.tvSoLuong.setText("Số lượng mua: " + thongKeList.get(i).getSoluong() + " Đôi");
         xemHoaDonHolder.tvGiaBan.setText("Giá bán: " + thongKeList.get(i).getGiaban() + "00 VNĐ");
         return view;
     }
