@@ -69,7 +69,7 @@ public class MauGiay implements Serializable {
         return giaBan;
     }
 
-    public void setGiaBan(double giaBan) {
+    public void setGiaBan(int giaBan) {
         this.giaBan = giaBan;
     }
 

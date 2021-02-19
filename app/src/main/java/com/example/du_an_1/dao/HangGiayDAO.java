@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.util.Log;
 
 import com.example.du_an_1.database.DatabaseHealper;
 import com.example.du_an_1.model.HangGiay;
@@ -15,48 +14,39 @@ import java.util.List;
 public class HangGiayDAO {
 
     public static final String TABLE_NAME = "HangGiay";
-    public static final String SQL_HANG_GIAY = "CREATE TABLE HangGiay(mahanggiay text primary key, tenhanggiay text, mota text, vitri number)";
+    private static final String KEY_ID_BRAND = "mahanggiay";
+    private static final String KEY_NAME_BRAND = "tenhanggiay";
+    private static final String KEY_DES_BRAND = "mota";
+    public static final String SQL_HANG_GIAY = "CREATE TABLE " + TABLE_NAME + "(" + KEY_ID_BRAND + " text primary key , " + KEY_NAME_BRAND + " TEXT, " + KEY_DES_BRAND + " TEXT)";
 
     private SQLiteDatabase db;
     private DatabaseHealper dbHealper;
 
-    public HangGiayDAO(Context context) {
+    public HangGiayDAO( Context context ) {
         dbHealper = new DatabaseHealper(context);
         db = dbHealper.getWritableDatabase();
     }
 
-    public boolean insertHangGiay(HangGiay hangGiay) {
+    public long insertHangGiay( HangGiay hangGiay ) {
         ContentValues values = new ContentValues();
-        values.put("mahanggiay", hangGiay.getMaHangGiay());
-        values.put("tenhanggiay", hangGiay.getTenHangGiay());
-        values.put("mota", hangGiay.getMoTa());
-        values.put("vitri", hangGiay.getViTri());
+        values.put(KEY_ID_BRAND, hangGiay.getMaHangGiay());
+        values.put(KEY_NAME_BRAND, hangGiay.getTenHangGiay());
+        values.put(KEY_DES_BRAND, hangGiay.getMoTa());
 
-        long result = db.insert(TABLE_NAME, null, values);
-        if (result == -1) return false;
-        return true;
+        return db.insert(TABLE_NAME, null, values);
     }
 
-    public int updateHangGiay(String mahanggiay, String tenhanggiay, String mota, int vitri) {
+    public long updateHangGiay( HangGiay hangGiay ) {
         ContentValues values = new ContentValues();
-        values.put("mahanggiay", mahanggiay);
-        values.put("tenhanggiay", tenhanggiay);
-        values.put("mota", mota);
-        values.put("vitri", vitri);
+        values.put(KEY_ID_BRAND, hangGiay.getMaHangGiay());
+        values.put(KEY_NAME_BRAND, hangGiay.getTenHangGiay());
+        values.put(KEY_DES_BRAND, hangGiay.getMoTa());
 
-        int result = db.update(TABLE_NAME, values, "mahanggiay=?", new String[]{mahanggiay});
-        if (result == 0) {
-            return -1;
-        }
-        return 1;
+        return db.update(TABLE_NAME, values, KEY_ID_BRAND + "=?", new String[]{hangGiay.getMaHangGiay()});
     }
 
-    public int deleteHangGiay(String mahanggiay) {
-        int result = db.delete(TABLE_NAME, "mahanggiay=?", new String[]{mahanggiay});
-        if (result == 0) {
-            return -1;
-        }
-        return 1;
+    public int deleteHangGiay( String mahanggiay ) {
+        return db.delete(TABLE_NAME, KEY_ID_BRAND+"=?", new String[]{mahanggiay});
     }
 
     public List<HangGiay> getAllHangGiay() {
@@ -69,7 +59,6 @@ public class HangGiayDAO {
             hangGiay.setMaHangGiay(cursor.getString(cursor.getColumnIndex("mahanggiay")));
             hangGiay.setTenHangGiay(cursor.getString(cursor.getColumnIndex("tenhanggiay")));
             hangGiay.setMoTa(cursor.getString(cursor.getColumnIndex("mota")));
-            hangGiay.setViTri(cursor.getInt(cursor.getColumnIndex("vitri")));
             hangGiayList.add(hangGiay);
             cursor.moveToNext();
         }

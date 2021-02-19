@@ -1,9 +1,5 @@
 package com.example.du_an_1;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -15,29 +11,30 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.du_an_1.dao.HangGiayDAO;
 import com.example.du_an_1.dao.MauGiayDAO;
 import com.example.du_an_1.model.HangGiay;
 import com.example.du_an_1.model.MauGiay;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ThemMauGiayActivity extends AppCompatActivity {
-    private TextInputLayout tilMMG, tilTMG, tilSL, tilMS, tilGB;
-    private EditText edMaMG, edTenMG, edSoLuongMG, edMauSac, edGiaBan;
-    private Spinner spnMaHG;
-
-
     MauGiayDAO mauGiayDAO;
     HangGiayDAO hangGiayDAO;
     List<MauGiay> mauGiayList;
     List<HangGiay> hangGiayList;
     String mahanggiay;
+    private TextInputLayout tilMMG, tilTMG, tilSL, tilMS, tilGB;
+    private EditText edMaMG, edTenMG, edSoLuongMG, edMauSac, edGiaBan;
+    private Spinner spnMaHG;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_them_mau_giay);
         setTitle("Thêm mẫu giày");
@@ -59,12 +56,12 @@ public class ThemMauGiayActivity extends AppCompatActivity {
         getMaHangGiay();
         spnMaHG.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected( AdapterView<?> parent, View view, int position, long id ) {
                 mahanggiay = hangGiayList.get(spnMaHG.getSelectedItemPosition()).getMaHangGiay();
             }
 
             @Override
-            public void onNothingSelected(AdapterView<?> parent) {
+            public void onNothingSelected( AdapterView<?> parent ) {
 
             }
         });
@@ -79,21 +76,20 @@ public class ThemMauGiayActivity extends AppCompatActivity {
 
     }
 
-    public void themMauGiay(View view) {
+    public void themMauGiay( View view ) {
         mauGiayDAO = new MauGiayDAO(this);
         validate();
         String maMG = edMaMG.getText().toString();
         String tenMG = edTenMG.getText().toString();
         String mausac = edMauSac.getText().toString();
         int soluong = Integer.parseInt(edSoLuongMG.getText().toString());
-        double giaban = Double.parseDouble(edGiaBan.getText().toString());
+        int giaban = Integer.parseInt(edGiaBan.getText().toString());
 
         MauGiay mauGiay = new MauGiay(maMG, mahanggiay, tenMG, soluong, mausac, giaban);
-        boolean result = mauGiayDAO.insertMauGiay(mauGiay);
-        if (result) {
+        long result = mauGiayDAO.insertMauGiay(mauGiay);
+        if (result > 0) {
             Toast.makeText(this, "Thành công", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(this, DanhSachMauGiayActivity.class);
-            startActivity(intent);
+            finish();
         } else {
             Toast.makeText(this, "Thất bại", Toast.LENGTH_SHORT).show();
         }
@@ -139,7 +135,7 @@ public class ThemMauGiayActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected( @NonNull MenuItem item ) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 Intent intent = new Intent(this, DanhSachMauGiayActivity.class);

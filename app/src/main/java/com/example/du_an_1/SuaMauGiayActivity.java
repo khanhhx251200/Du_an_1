@@ -77,7 +77,8 @@ public class SuaMauGiayActivity extends AppCompatActivity {
         edTenMG.setText(tenmaugiay);
         edSoLuongMG.setText(soluong + "");
         edMauSac.setText(mausac);
-        edGiaBan.setText(giaban + "00");
+        int gia = (int)Math.round(giaban);
+        edGiaBan.setText(gia+"");
 
         hangGiayList = new ArrayList<>();
         hangGiayList = hangGiayDAO.getAllHangGiay();

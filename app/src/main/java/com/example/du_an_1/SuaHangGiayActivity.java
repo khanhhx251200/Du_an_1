@@ -1,9 +1,5 @@
 package com.example.du_an_1;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -11,6 +7,10 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.du_an_1.dao.HangGiayDAO;
 import com.example.du_an_1.model.HangGiay;
@@ -27,56 +27,52 @@ public class SuaHangGiayActivity extends AppCompatActivity {
     private int vitri;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sua_hang_giay);
         setTitle("Sửa Hãng Giày");
         iconBack();
-        edSuaMaHangGiay = findViewById(R.id.edSuaMaHangGiay);
-        edSuaTenHangGiay = findViewById(R.id.edSuaTenHangGiay);
-        edSuaMoTa = findViewById(R.id.edSuaMoTa);
-        edSuaViTri = findViewById(R.id.edSuaViTri);
-
-        hangGiayDAO = new HangGiayDAO(this);
-        hangGiayList = new ArrayList<>();
-        hangGiayList = hangGiayDAO.getAllHangGiay();
+        initUI();
 
         intent = getIntent();
         Bundle bundle = intent.getBundleExtra("bundle");
         HangGiay hangGiay = (HangGiay) bundle.getSerializable("HangGiay");
-
-        mahanggiay = hangGiay.getMaHangGiay();
-        tenhanggiay = hangGiay.getTenHangGiay();
-        mota = hangGiay.getMoTa();
-        vitri = hangGiay.getViTri();
-
-        edSuaMaHangGiay.setText(mahanggiay);
-        edSuaTenHangGiay.setText(tenhanggiay);
-        edSuaMoTa.setText(mota);
-        edSuaViTri.setText(vitri + "");
-        edSuaMaHangGiay.setEnabled(false);
+        edSuaMaHangGiay.setText(hangGiay.getMaHangGiay());
+        edSuaTenHangGiay.setText(hangGiay.getTenHangGiay());
+        edSuaMoTa.setText(hangGiay.getMoTa());
 
     }
 
-    public void huysuahanggiay(View view) {
-        intent = new Intent(SuaHangGiayActivity.this, DanhSachHangGiayActivity.class);
-        startActivity(intent);
-    }
+    private void initUI() {
+        edSuaMaHangGiay = findViewById(R.id.edSuaMaHangGiay);
+        edSuaTenHangGiay = findViewById(R.id.edSuaTenHangGiay);
+        edSuaMoTa = findViewById(R.id.edSuaMoTa);
 
-    public void suaHanggiay(View view) {
         hangGiayDAO = new HangGiayDAO(this);
-        long result = hangGiayDAO.updateHangGiay(edSuaMaHangGiay.getText().toString(), edSuaTenHangGiay.getText().toString(), edSuaMoTa.getText().toString(), Integer.parseInt(edSuaViTri.getText().toString()));
+    }
+
+    public void huysuahanggiay( View view ) {
+        finish();
+    }
+
+    public void suaHanggiay( View view ) {
+
+        String id = edSuaMaHangGiay.getText().toString();
+        String name = edSuaTenHangGiay.getText().toString();
+        String des = edSuaMoTa.getText().toString();
+        HangGiay hangGiay = new HangGiay(id, name, des);
+
+        long result = hangGiayDAO.updateHangGiay(hangGiay);
         if (result > 0) {
             Toast.makeText(this, "Sửa thành công!", Toast.LENGTH_SHORT).show();
-            intent = new Intent(SuaHangGiayActivity.this, DanhSachHangGiayActivity.class);
-            startActivity(intent);
+            finish();
         } else {
             Toast.makeText(this, "Sửa thất bại!", Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected( @NonNull MenuItem item ) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 Intent intent = new Intent(this, DanhSachHangGiayActivity.class);

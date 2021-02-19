@@ -1,17 +1,18 @@
 package com.example.du_an_1;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.du_an_1.adapter.HangGiayAdapter;
 import com.example.du_an_1.dao.HangGiayDAO;
@@ -29,7 +30,7 @@ public class DanhSachHangGiayActivity extends AppCompatActivity {
     Intent intent;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_danh_sach_hang_giay);
         setTitle("Danh sách hãng giày");
@@ -43,11 +44,11 @@ public class DanhSachHangGiayActivity extends AppCompatActivity {
         lvDanhSachHangGiay.setAdapter(hangGiayAdapter);
         lvDanhSachHangGiay.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                intent = new Intent(DanhSachHangGiayActivity.this,SuaHangGiayActivity.class);
+            public void onItemClick( AdapterView<?> parent, View view, int position, long id ) {
+                intent = new Intent(DanhSachHangGiayActivity.this, SuaHangGiayActivity.class);
                 Bundle bundle = new Bundle();
-                bundle.putSerializable("HangGiay",hangGiayList.get(position));
-                intent.putExtra("bundle",bundle);
+                bundle.putSerializable("HangGiay", hangGiayList.get(position));
+                intent.putExtra("bundle", bundle);
                 startActivity(intent);
             }
         });
@@ -55,13 +56,13 @@ public class DanhSachHangGiayActivity extends AppCompatActivity {
 
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
+    public boolean onCreateOptionsMenu( Menu menu ) {
         getMenuInflater().inflate(R.menu.menu_hang_giay, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected( @NonNull MenuItem item ) {
         switch (item.getItemId()) {
             case R.id.item_add_hang_giay:
                 startActivity(new Intent(DanhSachHangGiayActivity.this, ThemHangGiayActivity.class));
@@ -81,5 +82,17 @@ public class DanhSachHangGiayActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setHomeAsUpIndicator(drawable);
 
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        try {
+            hangGiayList.clear();
+            hangGiayList = hangGiayDAO.getAllHangGiay();
+            hangGiayAdapter.dataSetChange(hangGiayList);
+        } catch (Exception e) {
+            Log.e("Book", e.toString() + "");
+        }
     }
 }

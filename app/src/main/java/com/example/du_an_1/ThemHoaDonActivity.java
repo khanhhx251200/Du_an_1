@@ -1,9 +1,5 @@
 package com.example.du_an_1;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -15,6 +11,10 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.du_an_1.adapter.HoaDonAdapter;
 import com.example.du_an_1.dao.HoaDonChiTietDAO;
 import com.example.du_an_1.dao.HoaDonDAO;
@@ -23,7 +23,8 @@ import com.example.du_an_1.model.HoaDon;
 import com.example.du_an_1.model.HoaDonChiTiet;
 import com.example.du_an_1.model.MauGiay;
 
-import java.text.ParseException;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -45,7 +46,7 @@ public class ThemHoaDonActivity extends AppCompatActivity {
     SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate( Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_them_hoa_don);
         setTitle("Hóa Đơn");
@@ -72,7 +73,7 @@ public class ThemHoaDonActivity extends AppCompatActivity {
         }
         btnThanhToan.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick( View v ) {
                 HoaDon hoaDon = null;
 
                 try {
@@ -127,12 +128,14 @@ public class ThemHoaDonActivity extends AppCompatActivity {
         for (int i = 0; i < mauGiayList.size(); i++) {
             tongtien += mauGiayList.get(i).getGiaBan() * soLuong.get(i);
         }
-        tvTongTien.setText("Tổng tiền: " + tongtien + "00 VNĐ");
+        NumberFormat formatter = new DecimalFormat("#,###");
+        String formattedNumber = formatter.format(tongtien);
+        tvTongTien.setText(formattedNumber + " VNĐ");
     }
 
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+    public boolean onOptionsItemSelected( @NonNull MenuItem item ) {
         switch (item.getItemId()) {
             case android.R.id.home:
                 onBackPressed();

@@ -32,8 +32,8 @@
             android:orientation="vertical"
             android:layout_toRightOf="@id/img">
             <TextView
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginVertical="8dp"
+
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
@@ -55,7 +55,7 @@
             <TextView
                 android:id="@+id/tvMaHangGiay"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginBottom="8dp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textSize="16dp"
@@ -69,28 +69,7 @@
                 android:text="Adidas"/>
         </LinearLayout>
 
-        <LinearLayout
-            android:layout_width="65dp"
-            android:layout_height="65dp"
-            android:gravity="center"
-            android:layout_toLeftOf="@id/imgDeleteHangGiay"
-            android:orientation="horizontal">
 
-            <TextView
-                android:textStyle="bold"
-                android:textSize="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Vị trí: " />
-
-            <TextView
-                android:id="@+id/tvVitri"
-                android:textSize="16dp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="1" />
-
-        </LinearLayout>
 
     </RelativeLayout>
 </LinearLayout>

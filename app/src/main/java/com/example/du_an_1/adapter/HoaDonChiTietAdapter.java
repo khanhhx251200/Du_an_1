@@ -11,13 +11,15 @@ import android.widget.TextView;
 import com.example.du_an_1.R;
 import com.example.du_an_1.model.HoaDonChiTiet;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 public class HoaDonChiTietAdapter extends BaseAdapter {
     List<HoaDonChiTiet> hoaDonChiTietList;
     Context context;
 
-    public HoaDonChiTietAdapter(List<HoaDonChiTiet> hoaDonChiTietList, Context context) {
+    public HoaDonChiTietAdapter( List<HoaDonChiTiet> hoaDonChiTietList, Context context ) {
         this.hoaDonChiTietList = hoaDonChiTietList;
         this.context = context;
 
@@ -29,17 +31,17 @@ public class HoaDonChiTietAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public Object getItem( int position ) {
         return null;
     }
 
     @Override
-    public long getItemId(int position) {
+    public long getItemId( int position ) {
         return 0;
     }
 
     @Override
-    public View getView(final int i, View view, ViewGroup parent) {
+    public View getView( final int i, View view, ViewGroup parent ) {
         HoaDonHolder hoaDonHolder = null;
         if (view == null) {
             hoaDonHolder = new HoaDonHolder();
@@ -54,14 +56,20 @@ public class HoaDonChiTietAdapter extends BaseAdapter {
             hoaDonHolder = (HoaDonHolder) view.getTag();
         }
         hoaDonHolder.tvTenMauGiay.setText("Tên mẫu giày: " + hoaDonChiTietList.get(i).getMauGiay().getTenMauGiay());
-        hoaDonHolder.tvGiaBan.setText("Giá bán: " + hoaDonChiTietList.get(i).getMauGiay().getGiaBan() + "00 VND");
         hoaDonHolder.tvSoLuong.setText("Số lượng mua: " + hoaDonChiTietList.get(i).getSoLuongMua() + "");
         int soLuong = hoaDonChiTietList.get(i).getSoLuongMua();
         Double giatien = hoaDonChiTietList.get(i).getMauGiay().getGiaBan();
-        hoaDonHolder.tvThanhTien.setText("Giá: " + soLuong * giatien + "00 VND");
+        NumberFormat formatter = new DecimalFormat("#,###");
+        String formattedNumber = formatter.format(giatien);
+        String price = "Giá: " + formattedNumber + " VNĐ";
+        hoaDonHolder.tvGiaBan.setText(price);
+
+        double thanhTien = giatien * soLuong;
+        String tongTien = formatter.format(thanhTien);
+        hoaDonHolder.tvThanhTien.setText(tongTien+" VNĐ");
         hoaDonHolder.imgXoa.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick( View v ) {
                 hoaDonChiTietList.remove(i);
                 notifyDataSetChanged();
             }

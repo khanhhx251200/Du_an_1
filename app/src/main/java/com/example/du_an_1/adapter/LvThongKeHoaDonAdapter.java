@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.example.du_an_1.R;
 import com.example.du_an_1.model.ThongKe;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.List;
 
 public class LvThongKeHoaDonAdapter extends BaseAdapter {
@@ -52,7 +54,10 @@ public class LvThongKeHoaDonAdapter extends BaseAdapter {
         }
         thongKeHolder.tvMHDTK.setText("Mã hóa đơn: " + thongKeList.get(i).getMahoadon());
         thongKeHolder.tvTime.setText("Ngày mua: " + thongKeList.get(i).getNgaymua());
-        thongKeHolder.tvTongTien.setText("Tổng tiền: " + thongKeList.get(i).getTongtien() + "00 VND");
+        NumberFormat formatter = new DecimalFormat("#,###");
+        double tongTien = Double.parseDouble(thongKeList.get(i).getTongtien());
+        String formattedNumber = formatter.format(tongTien);
+        thongKeHolder.tvTongTien.setText("Tổng tiền: " + formattedNumber + " VND");
         return view;
     }
 

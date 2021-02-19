@@ -28,6 +28,8 @@ import com.example.du_an_1.adapter.LvThongKeHoaDonAdapter;
 import com.example.du_an_1.dao.HoaDonChiTietDAO;
 import com.example.du_an_1.model.ThongKe;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -102,7 +104,7 @@ public class FragmentThongKeDoanhThuTheoNgay extends Fragment {
                 } else {
                     dayS = dayOfMonth + "";
                 }
-                edFragmentNgay.setText(year + "-" + monthS + "-" + dayS);
+                edFragmentNgay.setText(dayS + "-" + monthS + "-" + year);
             }
         }, year, month, day);
         imgCalendar.setOnClickListener(new View.OnClickListener() {
@@ -127,7 +129,9 @@ public class FragmentThongKeDoanhThuTheoNgay extends Fragment {
                         double doanhthu = Double.parseDouble(thongKeList.get(i).getTongtien());
                         tongdoanhthu += doanhthu;
                     }
-                    tvTongDoanhThuTheoNgay.setText("Tổng doanh thu theo ngày là: " + tongdoanhthu + "00 VNĐ");
+                    NumberFormat formatter = new DecimalFormat("#,###");
+                    String formattedNumber = formatter.format(tongdoanhthu);
+                    tvTongDoanhThuTheoNgay.setText("Tổng doanh thu theo ngày là: " + formattedNumber + " VNĐ");
                     lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int i, long id) {

@@ -10,11 +10,10 @@ public class HangGiay implements Serializable {
     private String moTa;
     private int viTri;
 
-    public HangGiay(String maHangGiay, String tenHangGiay, String moTa, int viTri) {
+    public HangGiay( String maHangGiay, String tenHangGiay, String moTa ) {
         this.maHangGiay = maHangGiay;
         this.tenHangGiay = tenHangGiay;
         this.moTa = moTa;
-        this.viTri = viTri;
     }
 
     public HangGiay() {

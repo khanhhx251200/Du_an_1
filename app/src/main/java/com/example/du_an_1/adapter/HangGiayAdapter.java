@@ -19,7 +19,7 @@ public class HangGiayAdapter extends BaseAdapter {
     Context context;
     HangGiayDAO hangGiayDAO;
 
-    public HangGiayAdapter(List<HangGiay> hangGiayList, Context context) {
+    public HangGiayAdapter( List<HangGiay> hangGiayList, Context context ) {
         this.hangGiayList = hangGiayList;
         this.context = context;
         hangGiayDAO = new HangGiayDAO(context);
@@ -31,65 +31,70 @@ public class HangGiayAdapter extends BaseAdapter {
     }
 
     @Override
-    public HangGiay getItem(int position) {
+    public HangGiay getItem( int position ) {
         return hangGiayList.get(position);
     }
 
     @Override
-    public long getItemId(int position) {
+    public long getItemId( int position ) {
         return 0;
     }
 
     @Override
-    public View getView(final int position, View view, ViewGroup parent) {
+    public View getView( final int position, View view, ViewGroup parent ) {
         HangGiayHolder hangGiayHolder = null;
         if (view == null) {
             view = LayoutInflater.from(context).inflate(R.layout.custom_listview_hanggiay, parent, false);
             hangGiayHolder = new HangGiayHolder();
             hangGiayHolder.tvMahanggiay = view.findViewById(R.id.tvMaHangGiay);
             hangGiayHolder.tvTenhanggiay = view.findViewById(R.id.tvTenHangGiay);
-            hangGiayHolder.tvVitri = view.findViewById(R.id.tvVitri);
             hangGiayHolder.imgLogo = view.findViewById(R.id.img);
             hangGiayHolder.imgDelete = view.findViewById(R.id.imgDeleteHangGiay);
             hangGiayHolder.imgDelete.setOnClickListener(new View.OnClickListener() {
                 @Override
-                public void onClick(View v) {
-                    hangGiayDAO.deleteHangGiay(hangGiayList.get(position).getMaHangGiay());
-                    hangGiayList.remove(position);
-                    notifyDataSetChanged();
+                public void onClick( View v ) {
+                    if (hangGiayDAO.deleteHangGiay(hangGiayList.get(position).getMaHangGiay()) > 0) {
+                        hangGiayList.remove(position);
+                        notifyDataSetChanged();
+                    }
+
                 }
             });
             view.setTag(hangGiayHolder);
         } else {
             hangGiayHolder = (HangGiayHolder) view.getTag();
         }
-        if (hangGiayList.get(position).getTenHangGiay().equals("Adidas")){
+        if (hangGiayList.get(position).getTenHangGiay().equals("Adidas")) {
             hangGiayHolder.imgLogo.setImageResource(R.drawable.logoadidas);
-        } else if (hangGiayList.get(position).getTenHangGiay().equals("Gucci")){
+        } else if (hangGiayList.get(position).getTenHangGiay().equals("Gucci")) {
             hangGiayHolder.imgLogo.setImageResource(R.drawable.gucci);
-        } else if (hangGiayList.get(position).getTenHangGiay().equals("Nike")){
+        } else if (hangGiayList.get(position).getTenHangGiay().equals("Nike")) {
             hangGiayHolder.imgLogo.setImageResource(R.drawable.nike);
-        } else if (hangGiayList.get(position).getTenHangGiay().equals("Converse")){
+        } else if (hangGiayList.get(position).getTenHangGiay().equals("Converse")) {
             hangGiayHolder.imgLogo.setImageResource(R.drawable.converse);
-        } else if (hangGiayList.get(position).getTenHangGiay().equals("Chanel")){
+        } else if (hangGiayList.get(position).getTenHangGiay().equals("Chanel")) {
             hangGiayHolder.imgLogo.setImageResource(R.drawable.chanel);
-        } else if (hangGiayList.get(position).getTenHangGiay().equals("Dolce&Gabbana")){
+        } else if (hangGiayList.get(position).getTenHangGiay().equals("Dolce&Gabbana")) {
             hangGiayHolder.imgLogo.setImageResource(R.drawable.dolce);
-        } else if (hangGiayList.get(position).getTenHangGiay().equals("Lacoste")){
+        } else if (hangGiayList.get(position).getTenHangGiay().equals("Lacoste")) {
             hangGiayHolder.imgLogo.setImageResource(R.drawable.lacoste);
-        } else if (hangGiayList.get(position).getTenHangGiay().equals("Puma")){
+        } else if (hangGiayList.get(position).getTenHangGiay().equals("Puma")) {
             hangGiayHolder.imgLogo.setImageResource(R.drawable.puma);
         }
         hangGiayHolder.tvMahanggiay.setText(hangGiayList.get(position).getMaHangGiay());
         hangGiayHolder.tvTenhanggiay.setText(hangGiayList.get(position).getTenHangGiay());
-        hangGiayHolder.tvVitri.setText(String.valueOf(hangGiayList.get(position).getViTri()));
+
         return view;
+    }
+
+    public void dataSetChange( List<HangGiay> hangGiays ) {
+        this.hangGiayList = hangGiays;
+        notifyDataSetChanged();
     }
 
     public class HangGiayHolder {
         TextView tvMahanggiay;
         TextView tvTenhanggiay;
-        TextView tvVitri;
         ImageView imgLogo;
         ImageView imgDelete;
     }

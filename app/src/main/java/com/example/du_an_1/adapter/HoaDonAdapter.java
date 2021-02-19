@@ -10,6 +10,8 @@ import android.widget.TextView;
 import com.example.du_an_1.R;
 import com.example.du_an_1.model.MauGiay;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +20,7 @@ public class HoaDonAdapter extends BaseAdapter {
     private ArrayList<Integer> soLuong;
     private Context context;
 
-    public HoaDonAdapter(Context context, List<MauGiay> mauGiayList, ArrayList<Integer> soLuong) {
+    public HoaDonAdapter( Context context, List<MauGiay> mauGiayList, ArrayList<Integer> soLuong ) {
         this.context = context;
         this.mauGiayList = mauGiayList;
         this.soLuong = soLuong;
@@ -30,17 +32,17 @@ public class HoaDonAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int position) {
+    public Object getItem( int position ) {
         return null;
     }
 
     @Override
-    public long getItemId(int position) {
+    public long getItemId( int position ) {
         return 0;
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView( final int position, View convertView, ViewGroup parent ) {
         XemHoaDonHolder xemHoaDonHolder = null;
         if (convertView == null) {
             xemHoaDonHolder = new XemHoaDonHolder();
@@ -53,12 +55,16 @@ public class HoaDonAdapter extends BaseAdapter {
         } else {
             xemHoaDonHolder = (XemHoaDonHolder) convertView.getTag();
         }
-        xemHoaDonHolder.tvGiaBan.setText("Giá bán : " + mauGiayList.get(position).getGiaBan() + "00 VNĐ");
+
+        NumberFormat formatter = new DecimalFormat("#,###");
+        String formattedNumber = formatter.format(mauGiayList.get(position).getGiaBan());
+        xemHoaDonHolder.tvGiaBan.setText("Giá bán : " + formattedNumber + " VNĐ");
 
         xemHoaDonHolder.tvSoLuong.setText("Số lượng : " + soLuong.get(position) + "");
         xemHoaDonHolder.tvTenMauGiay.setText("Tên mẫu giày: " + mauGiayList.get(position).getTenMauGiay());
         double giatien = mauGiayList.get(position).getGiaBan() * soLuong.get(position);
-        xemHoaDonHolder.tvThanhTien.setText("Thành tiền : " + giatien + "00 VNĐ");
+        String formattedNumber1 = formatter.format(giatien);
+        xemHoaDonHolder.tvThanhTien.setText("Thành tiền : " + formattedNumber1 + " VNĐ");
 
         return convertView;
     }

@@ -16,14 +16,14 @@ public class MauGiayDAO {
     private SQLiteDatabase db;
 
     public static final String TABLE_NAME = "MauGiay";
-    public static final String SQL_MAU_GIAY = "CREATE TABLE MauGiay(mamaugiay text primary key, mahanggiay text, tenmaugiay text, soluong int, mausac text, giaban double)";
+    public static final String SQL_MAU_GIAY = "CREATE TABLE MauGiay(mamaugiay text primary key, mahanggiay text, tenmaugiay text, soluong int, mausac text, giaban integer)";
 
     public MauGiayDAO(Context context) {
         dbHelper = new DatabaseHealper(context);
         db = dbHelper.getWritableDatabase();
     }
 
-    public boolean insertMauGiay(MauGiay mauGiay) {
+    public long insertMauGiay(MauGiay mauGiay) {
         ContentValues values = new ContentValues();
         values.put("mamaugiay", mauGiay.getMaMauGiay());
         values.put("mahanggiay", mauGiay.getMaHangGiay());
@@ -32,9 +32,7 @@ public class MauGiayDAO {
         values.put("mausac", mauGiay.getMauSac());
         values.put("giaban", mauGiay.getGiaBan());
 
-        long result = db.insert(TABLE_NAME, null, values);
-        if (result == -1) return false;
-        return true;
+        return db.insert(TABLE_NAME, null, values);
     }
 
     public int updateMauGiay(String mamaugiay, String mahanggiay, String tenmaugiay, int soluong, String mausac, double giaban) {
@@ -67,7 +65,7 @@ public class MauGiayDAO {
             mauGiay.setTenMauGiay(cursor.getString(cursor.getColumnIndex("tenmaugiay")));
             mauGiay.setSoLuong(cursor.getInt(cursor.getColumnIndex("soluong")));
             mauGiay.setMauSac(cursor.getString(cursor.getColumnIndex("mausac")));
-            mauGiay.setGiaBan(cursor.getDouble(cursor.getColumnIndex("giaban")));
+            mauGiay.setGiaBan(cursor.getInt(cursor.getColumnIndex("giaban")));
             mauGiayList.add(mauGiay);
             cursor.moveToNext();
         }
@@ -87,7 +85,7 @@ public class MauGiayDAO {
             mauGiay.setTenMauGiay(cursor.getString(cursor.getColumnIndex("tenmaugiay")));
             mauGiay.setSoLuong(cursor.getInt(cursor.getColumnIndex("soluong")));
             mauGiay.setMauSac(cursor.getString(cursor.getColumnIndex("mausac")));
-            mauGiay.setGiaBan(cursor.getDouble(cursor.getColumnIndex("giaban")));
+            mauGiay.setGiaBan(cursor.getInt(cursor.getColumnIndex("giaban")));
             mauGiayList.add(mauGiay);
             cursor.moveToNext();
         }
@@ -107,7 +105,7 @@ public class MauGiayDAO {
             MauGiay mauGiay = new MauGiay();
             mauGiay.setMaMauGiay(cursor.getString(0));
             mauGiay.setSoLuong(cursor.getInt(1));
-            mauGiay.setGiaBan(0.0);
+            mauGiay.setGiaBan(0);
             mauGiay.setMauSac("");
             mauGiay.setMaHangGiay("");
             mauGiay.setTenMauGiay("");

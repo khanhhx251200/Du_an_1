@@ -42,7 +42,7 @@ public class ThemHoaDonChiTietActivity extends AppCompatActivity {
     List<HoaDonChiTiet> hoaDonChiTietList;
     Button btnThemVaoGioHang, btnXemHoaDon;
     HoaDonChiTietAdapter hoaDonChiTietAdapter;
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
 
     @Override

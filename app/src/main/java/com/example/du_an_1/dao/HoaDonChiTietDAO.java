@@ -33,11 +33,7 @@ public class HoaDonChiTietDAO {
         values.put("mamaugiay", hoaDonChiTiet.getMauGiay().getMaMauGiay());
         values.put("soluongmua", hoaDonChiTiet.getSoLuongMua());
 
-        long result = db.insert(TABLE_NAME, null, values);
-        if (result == 0) {
-            return -1;
-        }
-        return 1;
+        return db.insert(TABLE_NAME, null, values);
     }
 
     public List<ThongKe> getHoaDonTheoNgay(String ngay) {
