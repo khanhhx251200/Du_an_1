@@ -23,6 +23,8 @@ import com.example.du_an_1.adapter.LvThongKeHoaDonAdapter;
 import com.example.du_an_1.dao.HoaDonChiTietDAO;
 import com.example.du_an_1.model.ThongKe;
 
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -38,7 +40,7 @@ public class FragmentThongKeTheoKhoangThoiGian extends Fragment {
     private Context context;
 
     @Override
-    public void onAttach(Context context) {
+    public void onAttach( Context context ) {
         super.onAttach(context);
         this.context = context;
     }
@@ -49,14 +51,14 @@ public class FragmentThongKeTheoKhoangThoiGian extends Fragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate( @Nullable Bundle savedInstanceState ) {
         super.onCreate(savedInstanceState);
 
     }
 
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView( @NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState ) {
         View view = inflater.inflate(R.layout.fragment_khoang_thoi_gian, container, false);
         edDateFrom = view.findViewById(R.id.edDateFrom);
         edDateTo = view.findViewById(R.id.edDateTo);
@@ -70,7 +72,7 @@ public class FragmentThongKeTheoKhoangThoiGian extends Fragment {
     }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+    public void onActivityCreated( @Nullable Bundle savedInstanceState ) {
         super.onActivityCreated(savedInstanceState);
         thongKeList = new ArrayList<>();
         hoaDonChiTietDAO = new HoaDonChiTietDAO(context);
@@ -82,7 +84,7 @@ public class FragmentThongKeTheoKhoangThoiGian extends Fragment {
         edDateTo.setEnabled(false);
         final DatePickerDialog datePickerDialog = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            public void onDateSet( DatePicker view, int year, int month, int dayOfMonth ) {
                 String monthS;
                 String dayS;
                 if (month < 10) {
@@ -100,13 +102,13 @@ public class FragmentThongKeTheoKhoangThoiGian extends Fragment {
         }, year, month, day);
         imgCalendarFrom.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick( View v ) {
                 datePickerDialog.show();
             }
         });
         final DatePickerDialog datePickerDialog1 = new DatePickerDialog(context, new DatePickerDialog.OnDateSetListener() {
             @Override
-            public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
+            public void onDateSet( DatePicker view, int year, int month, int dayOfMonth ) {
                 String monthS;
                 String dayS;
                 if (month < 10) {
@@ -124,21 +126,23 @@ public class FragmentThongKeTheoKhoangThoiGian extends Fragment {
         }, year, month, day);
         imgCalendarTo.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick( View v ) {
                 datePickerDialog1.show();
             }
         });
 
         btnTimTKTG.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
+            public void onClick( View v ) {
                 if (edDateFrom.getText().toString().equals("") || edDateTo.getText().toString().equals("")) {
                     Toast.makeText(context, "Vui lòng chọn khoảng thời gian muốn tìm!!", Toast.LENGTH_SHORT).show();
                 } else {
                     thongKeList = hoaDonChiTietDAO.getDoanhThuTheoKhoangThoiGian(edDateFrom.getText().toString(), edDateTo.getText().toString());
                     if (thongKeList.size() > 0) {
                         double result = getTongDoanhThuTheoThoiGian(thongKeList);
-                        tvTongDoanhThuTKTG.setText("Tổng doanh thu từ " + edDateFrom.getText().toString() + " đến " + edDateTo.getText().toString() + " là: \n" + result + "00 VNĐ");
+                        NumberFormat formatter = new DecimalFormat("#,###");
+                        String formattedNumber = formatter.format(result);
+                        tvTongDoanhThuTKTG.setText("Tổng doanh thu từ " + edDateFrom.getText().toString() + " đến " + edDateTo.getText().toString() + " là: \n" + formattedNumber + " VNĐ");
                         LvThongKeHoaDonAdapter lvThongKeHoaDonAdapter = new LvThongKeHoaDonAdapter(thongKeList, context);
                         lvTKTG.setAdapter(lvThongKeHoaDonAdapter);
                     } else {
@@ -153,7 +157,7 @@ public class FragmentThongKeTheoKhoangThoiGian extends Fragment {
 
     }
 
-    private double getTongDoanhThuTheoThoiGian(List<ThongKe> list) {
+    private double getTongDoanhThuTheoThoiGian( List<ThongKe> list ) {
         double tongDoanhThu = 0;
         for (int i = 0; i < list.size(); i++) {
             double tongTien = Double.parseDouble(list.get(i).getTongtien());

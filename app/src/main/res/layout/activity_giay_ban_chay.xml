@@ -7,26 +7,26 @@
     android:orientation="vertical"
     tools:context=".GiayBanChayActivity">
 
-    <LinearLayout
+    <Spinner
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="40dp"
         android:gravity="center"
-        android:orientation="horizontal"
-        android:weightSum="10">
+       android:id="@+id/spn_month"
+        >
 
-        <EditText
-            android:id="@+id/edGiayBanChay"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="9"
-            android:hint="Nhập tháng cần tìm" />
+<!--        <EditText-->
+<!--            android:id="@+id/edGiayBanChay"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_weight="9"-->
+<!--            android:hint="Nhập tháng cần tìm" />-->
 
-        <Button
-            android:id="@+id/btnGiayBanChay"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tìm kiếm" />
-    </LinearLayout>
+<!--        <Button-->
+<!--            android:id="@+id/btnGiayBanChay"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Tìm kiếm" />-->
+    </Spinner>
 
     <ListView
         android:id="@+id/lvGiayBanChay"

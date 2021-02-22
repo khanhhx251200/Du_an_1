@@ -104,7 +104,7 @@ public class FragmentThongKeDoanhThuTheoNgay extends Fragment {
                 } else {
                     dayS = dayOfMonth + "";
                 }
-                edFragmentNgay.setText(dayS + "-" + monthS + "-" + year);
+                edFragmentNgay.setText(year + "-" + monthS + "-" + dayS);
             }
         }, year, month, day);
         imgCalendar.setOnClickListener(new View.OnClickListener() {
